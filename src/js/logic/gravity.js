@@ -4,8 +4,8 @@ var universe = require('./universe');
 
 var gravity = {
   // G is multiply by a coefficient to control speed.
-  G: 6.67384*Math.pow(10, -11),
   COEF: 1*Math.pow(10, 9),
+  G: 6.67384*Math.pow(10, -11)*1*Math.pow(10, 9),
 
   computeVelocity: function(index) {
     var self = this;
@@ -28,13 +28,13 @@ var gravity = {
         veZ = e2.z - e1.z;
         // e2 to e1 is -veX, -veY, -veZ
 
-        e1.vX += f*(veX)*self.COEF;
-        e1.vY += f*(veY)*self.COEF;
-        e1.vZ += f*(veZ)*self.COEF;
+        e1.vX += f*(veX);
+        e1.vY += f*(veY);
+        e1.vZ += f*(veZ);
 
-        e2.vX += -f*(veX)*self.COEF;
-        e2.vY += -f*(veY)*self.COEF;
-        e2.vZ += -f*(veZ)*self.COEF;
+        e2.vX += -f*(veX);
+        e2.vY += -f*(veY);
+        e2.vZ += -f*(veZ);
       }
     }
 

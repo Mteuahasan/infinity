@@ -3,6 +3,7 @@ var _     = require('lodash');
 var $      = require('../tools.js');
 var THREE  = require('../libs/orbit-control.js');
 
+
 var displayer = {
   windowHalfX: window.innerWidth/2,
   windowHalfY: window.innerHeight/2,
@@ -26,7 +27,7 @@ var displayer = {
     document.body.appendChild(self.container);
 
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 2000);
+    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000);
     self.camera.position.z = 100;
     self.camera.position.y = 200;
 
@@ -53,6 +54,7 @@ var displayer = {
     */
     self.particles = new THREE.Geometry(),
     self.pMaterial = new THREE.PointCloudMaterial({
+      size: 2,
       color: 0xFFFFFF,
       blending: THREE.AdditiveBlending,
       transparent: true,
@@ -67,6 +69,19 @@ var displayer = {
       var ticker = require('../logic/ticker.js');
       ticker.tick();
     });
+
+    // Set up animation
+    var meter = new FPSMeter({
+      theme  : 'dark',
+      heat   : true,
+      graph  : true,
+      history: 20
+    });
+    (function animloop(){
+      requestAnimFrame(animloop);
+      meter.tick();
+      self.render();
+    })();
   },
 
   particleRender: function(ctx) {
@@ -164,8 +179,6 @@ var displayer = {
       elements[i].particle.z = elements[i].z;
     }
     self.particleSystem.geometry.verticesNeedUpdate = true;
-
-    self.render();
   }
 };
 

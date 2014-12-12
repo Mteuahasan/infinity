@@ -390,7 +390,7 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
   }
 
   function onMouseWheel( event ) {
-
+    event.preventDefault();
     if ( scope.enabled === false || scope.noZoom === true ) return;
 
     var delta = 0;
