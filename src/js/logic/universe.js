@@ -5,28 +5,33 @@ var displayer = require('../ui/displayer');
 // Number of elements
 var N = 1500;
 
-// Coefficient for initial velocity
-var I = .15;
-
 var universe = {
   elements: [],
 
   init: function(elements) {
     var self = this;
-    for (var i=1;i<N;i++) {
+    var speed = 0;
+    var r1 = 0, r2 = 0, r3 = 0, sum = 0, tempSpeed = 0, ratio = 0;
+    for (var i=0;i<N;i++) {
       clone = _.cloneDeep(elements[0]);
 
+      speed = Math.random()*16+16;
 
-      // clone.vX = .2*(Math.random()-.5);
-      // clone.vY = .2*(Math.random()-.5);
-      // clone.vZ = .2*(Math.random()-.5);
+      // randomize speed on each axis
+      r1 = Math.random();
+      r2 = Math.random();
+      r3 = Math.random();
+      sum = r1 + r2 + r3;
 
-      do {
-        clone.vX = .5*(Math.random()+2);
-        clone.vY = .5*(Math.random()+2);
-        clone.vZ = .5*(Math.random()+2);
-      } while ((clone.vX + clone.vY + clone.vZ) < .5);
+      // get the real speed on each axis
+      tempSpeed = Math.sqrt(Math.pow((r1/sum)*speed,2)+Math.pow((r2/sum)*speed,2)+Math.pow((r3/sum)*speed,2));
+      ratio = speed/tempSpeed;
 
+      clone.vX = (r1/sum)*speed*ratio;
+      clone.vY = (r2/sum)*speed*ratio;
+      clone.vZ = (r3/sum)*speed*ratio;
+
+      // make it positive or negative
       clone.vX *= Math.round(Math.random()) == 1 ? 1 : -1;
       clone.vY *= Math.round(Math.random()) == 1 ? 1 : -1;
       clone.vZ *= Math.round(Math.random()) == 1 ? 1 : -1;

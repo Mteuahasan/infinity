@@ -27,7 +27,7 @@ var displayer = {
     document.body.appendChild(self.container);
 
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000);
+    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000000);
     self.camera.position.z = 100;
     self.camera.position.y = 200;
 
@@ -38,6 +38,11 @@ var displayer = {
     //Setting up the scene
     self.scene = new THREE.Scene();
     self.setupLights();
+
+
+    self.scene.add(new THREE.AxisHelper(1000000));
+    self.scene.add(new THREE.AxisHelper(-1000000));
+
 
     // Render
     self.renderer = new THREE.WebGLRenderer({clearAlpha: 1});
@@ -55,15 +60,10 @@ var displayer = {
     self.particles = new THREE.Geometry(),
     self.pMaterial = new THREE.PointCloudMaterial({
       size: 2,
-      color: 0xFFFFFF,
-      blending: THREE.AdditiveBlending,
-      transparent: true,
-      program: self.particleRender
+      color: 0xFFFFFF
     });
-    self.pMaterial.programe
-    console.log(self.pMaterial)
-    self.particle = new THREE.Vector3(0, 0, 0);
 
+    self.particle = new THREE.Vector3(0, 0, 0);
 
     self.createSpheresSync(0, elements, function() {
       var ticker = require('../logic/ticker.js');
@@ -105,7 +105,8 @@ var displayer = {
     if (n===elements.length) {
       self.particleSystem = new THREE.PointCloud(
           self.particles,
-          self.pMaterial);
+          self.pMaterial
+      );
 
       self.particleSystem.sortParticles = false;
 
@@ -132,17 +133,21 @@ var displayer = {
     var self = this;
     for (var i=0;i<elements.length;i++) {
       var particle = self.particle.clone();
-      particle.x = elements[i].x;
-      particle.y = elements[i].y;
-      particle.z = elements[i].z;
+
+      particle.setX(elements[i].x)
+              .setY(elements[i].y)
+              .setZ(elements[i].z);
+
       self.particles.vertices.push(particle);
       elements[i].particle = particle;
     }
 
     self.particleSystem = new THREE.PointCloud(
         self.particles,
-        self.pMaterial);
+        self.pMaterial
+      );
 
+    console.log(self.particleSystem);
     self.particleSystem.sortParticles = false;
 
     // add it to the scene
