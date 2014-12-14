@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   $.get('/data.json', function(d) {
-    ticker.init();
     universe.init(d.elements);
   });
 });

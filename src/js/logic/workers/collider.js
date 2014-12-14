@@ -1,5 +1,3 @@
-var _ = require('lodash');
-var l = 0;
 var collider = {
   computeAngle: function(e1, e2) {
     var angle = 0;

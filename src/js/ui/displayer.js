@@ -67,7 +67,7 @@ var displayer = {
 
     self.createSpheresSync(0, elements, function() {
       var ticker = require('../logic/ticker.js');
-      ticker.tick();
+      ticker.init();
     });
 
     // Set up animation
@@ -139,7 +139,6 @@ var displayer = {
               .setZ(elements[i].z);
 
       self.particles.vertices.push(particle);
-      elements[i].particle = particle;
     }
 
     self.particleSystem = new THREE.PointCloud(
@@ -147,7 +146,6 @@ var displayer = {
         self.pMaterial
       );
 
-    console.log(self.particleSystem);
     self.particleSystem.sortParticles = false;
 
     // add it to the scene
@@ -178,10 +176,10 @@ var displayer = {
   // Called at every ticks to move the elements
   updatePosition: function(elements) {
     var self = this;
-    for( var i = 0; i < elements.length; i++ ) {
-      elements[i].particle.x = elements[i].x;
-      elements[i].particle.y = elements[i].y;
-      elements[i].particle.z = elements[i].z;
+    for (var i=0; i<elements.length; i++) {
+      self.particles.vertices[i].x = elements[i].x;
+      self.particles.vertices[i].y = elements[i].y;
+      self.particles.vertices[i].z = elements[i].z;
     }
     self.particleSystem.geometry.verticesNeedUpdate = true;
   }

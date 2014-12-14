@@ -1,5 +1,6 @@
 var gulp       = require('gulp');
 var browserify = require('gulp-browserify');
+var workerify  = require ('workerify');
 var livereload = require('gulp-livereload');
 var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
@@ -24,6 +25,7 @@ gulp.task('sass', function () {
 gulp.task('js', function() {
   gulp.src('src/js/app.js')
     .pipe(browserify({
+      //transform: ['workerify'],
       insertGlobals : true,
       debug : true
     }))
