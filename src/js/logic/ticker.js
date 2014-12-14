@@ -6,6 +6,7 @@ var gravity   = new Worker('../src/js/logic/workers/gravity.js');
 var ticker = {
   run: true,
   speed: 40,
+  lastTick: 0,
 
   init: function() {
     var self = this;
@@ -13,21 +14,15 @@ var ticker = {
 
     gravity.addEventListener('message', function(e) {
       universe.elements = e.data;
-
-      self.tick();
+      setTimeout(self.tick, self.speed-(Date.now()-self.lastTick));
     }, false);
   },
 
   tick: function() {
-    var start = Date.now();
-
     displayer.updatePosition(universe.elements);
-    var delta = Date.now() - start;
-    if (ticker.run) {
-      setTimeout(function() {
-        gravity.postMessage(universe.elements);
-      }, ticker.speed-delta);
-    }
+
+    ticker.lastTick = Date.now();
+    gravity.postMessage(universe.elements);
   }
 }
 
