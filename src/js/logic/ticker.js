@@ -1,7 +1,7 @@
 var universe  = require('./universe')
 var displayer = require('../ui/displayer');
 
-var gravity   = new Worker('../src/js/logic/workers/gravity.js');
+var gravity   = new Worker('../src/js/logic/workers/physic.js');
 
 var ticker = {
   run: true,
