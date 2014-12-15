@@ -3,7 +3,7 @@ var _ = require('lodash');
 var displayer = require('../ui/displayer');
 
 // Number of elements
-var N = 1000;
+var N = 800;
 
 var universe = {
   elements: [],
@@ -15,21 +15,27 @@ var universe = {
     for (var i=0;i<N;i++) {
       clone = _.cloneDeep(elements[0]);
 
-      speed = 10;
+      speed = Math.random()*10;
+
+
+      clone.x = Math.round(Math.random()) == 1 ? 1000 : -1000;
+      clone.y = Math.round(Math.random()) == 1 ? 1000 : -1000;
+      clone.z = Math.round(Math.random()) == 1 ? 1000 : -1000;
 
       // randomize speed on each axis
-      r1 = Math.random();
-      r2 = Math.random();
-      r3 = Math.random();
-      sum = r1 + r2 + r3;
+      do {
+        r1 = Math.random();
+        r2 = Math.random();
+        r3 = Math.random();
+        sum = r1 + r2 + r3;
+      } while (sum === 0);
 
       // get the real speed on each axis
-      tempSpeed = Math.sqrt(Math.pow((r1/sum)*speed,2)+Math.pow((r2/sum)*speed,2)+Math.pow((r3/sum)*speed,2));
-      ratio = speed/tempSpeed;
+      speed = speed / Math.sqrt(Math.pow((r1/sum),2)+Math.pow((r2/sum),2)+Math.pow((r3/sum),2));
 
-      clone.vX = (r1/sum)*speed*ratio;
-      clone.vY = (r2/sum)*speed*ratio;
-      clone.vZ = (r3/sum)*speed*ratio;
+      clone.vX = (r1/sum)*speed;
+      clone.vY = (r2/sum)*speed;
+      clone.vZ = (r3/sum)*speed;
 
       // make it positive or negative
       clone.vX *= Math.round(Math.random()) == 1 ? 1 : -1;

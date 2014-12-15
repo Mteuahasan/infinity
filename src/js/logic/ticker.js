@@ -7,12 +7,14 @@ var ticker = {
   run: true,
   speed: 40,
   lastTick: 0,
+  ticks: 0,
 
   init: function() {
     var self = this;
-    gravity.postMessage(universe.elements);
+    gravity.postMessage({elements: universe.elements, ticks: self.ticks});
 
     gravity.addEventListener('message', function(e) {
+      self.ticks++;
       universe.elements = e.data;
       if (self.run)
         setTimeout(self.tick, self.speed-(Date.now()-self.lastTick));
@@ -23,7 +25,7 @@ var ticker = {
     displayer.updatePosition(universe.elements);
 
     ticker.lastTick = Date.now();
-    gravity.postMessage(universe.elements);
+    gravity.postMessage({elements: universe.elements, ticks: ticker.ticks});
   }
 }
 
