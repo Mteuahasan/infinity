@@ -15,8 +15,10 @@ var displayer = {
   scene   : null,
   renderer: null,
 
-  sphere : null,
-  spheres: [],
+  particle      : null,
+  particles     : null,
+  pMaterial     : null,
+  particleSystem: null,
 
   init: function(elements) {
     var self = this;
@@ -38,8 +40,8 @@ var displayer = {
     self.setupLights();
 
 
-    // self.scene.add(new THREE.AxisHelper(1000000));
-    // self.scene.add(new THREE.AxisHelper(-1000000));
+    self.scene.add(new THREE.AxisHelper(1000000));
+    self.scene.add(new THREE.AxisHelper(-1000000));
 
 
     // Render
@@ -53,14 +55,17 @@ var displayer = {
 
 
     /**
-      * Set spheres
+    * Set-particles
     */
-    var sphereGeometry = new THREE.SphereGeometry(10, 3, 3);
-    var sphereMaterial = new THREE.MeshPhongMaterial({color: 0xffff00});
-    self.sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    self.particles = new THREE.Geometry();
+    self.pMaterial = new THREE.PointCloudMaterial({
+      size: 2,
+      color: 0xFFFFFF
+    });
 
+    self.particle = new THREE.Vector3(0, 0, 0);
 
-    self.createSpheresSync(elements, function() {
+    self.createSpheresSync(0, elements, function() {
       var ticker = require('../logic/ticker.js');
       ticker.init();
     });
@@ -94,19 +99,29 @@ var displayer = {
   },
 
   // Create sphere in a for loop, faster and but freezes the browser
-  createSpheresSync: function(elements ,cb) {
+  createSpheresSync: function(n, elements ,cb) {
     var self = this;
-    var sphere = null;
+    var particle = null;
     for (var i=0;i<elements.length;i++) {
-      sphere = self.sphere.clone();
-      sphere.position.x = elements[i].x;
-      sphere.position.y = elements[i].y;
-      sphere.position.z = elements[i].z;
-      self.scene.add(sphere);
-      self.spheres.push(sphere);
-      console.log(sphere);
+      particle = self.particle.clone();
+
+      particle.setX(elements[i].x)
+              .setY(elements[i].y)
+              .setZ(elements[i].z);
+
+      elements[i].particle = particle;
+      self.particles.vertices.push(particle);
     }
 
+    self.particleSystem = new THREE.PointCloud(
+      self.particles,
+      self.pMaterial
+    );
+
+    self.particleSystem.sortParticles = false;
+
+    // add it to the scene
+    self.scene.add(self.particleSystem);
     cb();
   },
 
@@ -134,10 +149,11 @@ var displayer = {
   updatePosition: function(elements) {
     var self = this;
     for (var i=0; i<elements.length; i++) {
-      self.spheres[i].position.x = elements[i].x;
-      self.spheres[i].position.y = elements[i].y;
-      self.spheres[i].position.z = elements[i].z;
+      self.particles.vertices[i].x = elements[i].x;
+      self.particles.vertices[i].y = elements[i].y;
+      self.particles.vertices[i].z = elements[i].z;
     }
+    self.particleSystem.geometry.verticesNeedUpdate = true;
   }
 };
 
