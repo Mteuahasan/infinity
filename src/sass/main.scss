@@ -48,6 +48,8 @@ html, body {
     font-size: 20px;
   }
   .time {
+    display: block;
+    width: 100%;
     font-size: 25px;
     color: $control-color;
   }
@@ -109,6 +111,7 @@ html, body {
     }
     .seperate {
       margin: 5px 0px 10px 0px; 
+    }
   }
 }
 
