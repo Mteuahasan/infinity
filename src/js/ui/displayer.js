@@ -25,11 +25,10 @@ var displayer = {
 
     self.container = document.querySelector('#viewport');
 
-
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000000000000);
-    self.camera.position.z = 100;
-    self.camera.position.y = 200;
+    self.camera = new THREE.PerspectiveCamera(55, self.container.offsetWidth / self.container.offsetHeight, 2, 1000000);
+    self.camera.position.z = 1000;
+    self.camera.position.y = 1000;
 
     //Setting up orbit control
     self.controls = new THREE.OrbitControls(self.camera, self.container, self.container);
@@ -46,7 +45,7 @@ var displayer = {
 
     // Render
     self.renderer = new THREE.WebGLRenderer({clearAlpha: 1});
-    self.renderer.setSize(window.innerWidth, window.innerHeight);
+    self.renderer.setSize(self.container.offsetWidth, self.container.offsetHeight);
     self.container.appendChild(self.renderer.domElement);
 
     // On Resize
@@ -126,9 +125,9 @@ var displayer = {
   },
 
   onWindowResize: function() {
-    displayer.camera.aspect = window.innerWidth / window.innerHeight;
+    displayer.camera.aspect = displayer.container.offsetWidth / displayer.container.offsetHeight;
     displayer.camera.updateProjectionMatrix();
-    displayer.renderer.setSize(window.innerWidth, window.innerHeight);
+    displayer.renderer.setSize(displayer.container.offsetWidth, displayer.container.offsetHeight);
   },
 
   animate: function() {
