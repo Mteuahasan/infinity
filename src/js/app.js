@@ -2,7 +2,7 @@ var $ = require('./tools');
 var _ = require('lodash');
 
 var universe = require('./logic/universe');
-var ticker   = require('./logic/ticker')
+var ticker   = require('./logic/ticker');
 
 window.requestAnimFrame = (function() {
   return  window.requestAnimationFrame       ||

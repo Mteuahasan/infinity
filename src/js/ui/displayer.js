@@ -27,7 +27,7 @@ var displayer = {
 
 
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000000);
+    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000000000000);
     self.camera.position.z = 100;
     self.camera.position.y = 200;
 
@@ -55,9 +55,9 @@ var displayer = {
 
 
     /**
-      * Set-particles
+    * Set-particles
     */
-    self.particles = new THREE.Geometry(),
+    self.particles = new THREE.Geometry();
     self.pMaterial = new THREE.PointCloudMaterial({
       size: 2,
       color: 0xFFFFFF
@@ -94,57 +94,29 @@ var displayer = {
     var self = this;
 
     // Ambient Light
-    // var ambientLight = new THREE.AmbientLight({color : 0xffffff});
-    // self.scene.add(ambientLight);
-  },
-
-  // Create sphere the recursive way, it takes a longer time
-  // but doesn't free the browser
-  createSpheresAsync: function(n, elements, cb) {
-    var self = this;
-    if (n===elements.length) {
-      self.particleSystem = new THREE.PointCloud(
-          self.particles,
-          self.pMaterial
-      );
-
-      self.particleSystem.sortParticles = false;
-
-      // add it to the scene
-      self.scene.add(self.particleSystem);
-      cb();
-      return;
-    }
-
-    var particle = self.particle.clone();
-    particle.x = elements[n].x;
-    particle.y = elements[n].y;
-    particle.z = elements[n].z;
-    self.particles.vertices.push(particle);
-    elements[n].particle = particle;
-
-    setTimeout(function() {
-      self.createSpheresAsync(n+1, elements, cb);
-    }, 0);
+    var ambientLight = new THREE.AmbientLight({color : 0xffffff});
+    self.scene.add(ambientLight);
   },
 
   // Create sphere in a for loop, faster and but freezes the browser
-  createSpheresSync: function(n, elements, cb) {
+  createSpheresSync: function(n, elements ,cb) {
     var self = this;
+    var particle = null;
     for (var i=0;i<elements.length;i++) {
-      var particle = self.particle.clone();
+      particle = self.particle.clone();
 
       particle.setX(elements[i].x)
               .setY(elements[i].y)
               .setZ(elements[i].z);
 
+      elements[i].particle = particle;
       self.particles.vertices.push(particle);
     }
 
     self.particleSystem = new THREE.PointCloud(
-        self.particles,
-        self.pMaterial
-      );
+      self.particles,
+      self.pMaterial
+    );
 
     self.particleSystem.sortParticles = false;
 

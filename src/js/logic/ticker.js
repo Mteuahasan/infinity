@@ -1,34 +1,32 @@
-var universe  = require('./universe')
+var universe  = require('./universe');
 var displayer = require('../ui/displayer');
 
-var gravity   = new Worker('../src/js/logic/workers/gravity.js');
+var gravity   = new Worker('../src/js/logic/workers/physic.js');
 
 var ticker = {
   run: true,
   speed: 40,
+  lastTick: 0,
+  ticks: 0,
 
   init: function() {
     var self = this;
-    gravity.postMessage(universe.elements);
+    gravity.postMessage({elements: universe.elements, ticks: self.ticks});
 
     gravity.addEventListener('message', function(e) {
+      self.ticks++;
       universe.elements = e.data;
-
-      self.tick();
+      if (self.run)
+        setTimeout(self.tick, self.speed-(Date.now()-self.lastTick));
     }, false);
   },
 
   tick: function() {
-    var start = Date.now();
-
     displayer.updatePosition(universe.elements);
-    var delta = Date.now() - start;
-    if (ticker.run) {
-      setTimeout(function() {
-        gravity.postMessage(universe.elements);
-      }, ticker.speed-delta);
-    }
+
+    ticker.lastTick = Date.now();
+    gravity.postMessage({elements: universe.elements, ticks: ticker.ticks});
   }
-}
+};
 
 module.exports = ticker;
