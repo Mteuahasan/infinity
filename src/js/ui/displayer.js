@@ -26,7 +26,7 @@ var displayer = {
     self.container = document.querySelector('#viewport');
 
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, self.container.offsetWidth / self.container.offsetHeight, 2, 1000000);
+    self.camera = new THREE.PerspectiveCamera(55, self.container.offsetWidth / self.container.offsetHeight, 2, 1000000000);
     self.camera.position.z = 1000;
     self.camera.position.y = 1000;
 
@@ -70,7 +70,7 @@ var displayer = {
     });
 
     // Set up animation
-    var meter = new FPSMeter({
+    self.meter = new FPSMeter({
       theme  : 'dark',
       heat   : true,
       graph  : true,
@@ -78,7 +78,7 @@ var displayer = {
     });
     (function animloop(){
       requestAnimFrame(animloop);
-      meter.tick();
+      self.meter.tick();
       self.render();
     })();
   },

@@ -1,31 +1,39 @@
 var universe  = require('./universe');
 var displayer = require('../ui/displayer');
 
-var gravity   = new Worker('../src/js/logic/workers/physic.js');
+var gravity   = require('./gravity');
 
 var ticker = {
   run: true,
-  speed: 40,
+  speed: 0,
   lastTick: 0,
   ticks: 0,
+  meter: null,
 
   init: function() {
     var self = this;
-    gravity.postMessage({elements: universe.elements, ticks: self.ticks});
 
-    gravity.addEventListener('message', function(e) {
-      self.ticks++;
-      universe.elements = e.data;
-      if (self.run)
-        setTimeout(self.tick, self.speed-(Date.now()-self.lastTick));
-    }, false);
+    self.meter = new FPSMeter({
+      theme  : 'light',
+      heat   : true,
+      graph  : true,
+      left:     'auto',      // Meter left offset.
+      right:    '5px',     // Meter right offset.
+      history: 20
+    });
+
+    self.tick();
   },
 
   tick: function() {
-    displayer.updatePosition(universe.elements);
+    var self = this;
+    var elements = gravity.computeVelocity(0, universe.elements, ticker.ticks)
+    displayer.updatePosition(elements);
 
     ticker.lastTick = Date.now();
-    gravity.postMessage({elements: universe.elements, ticks: ticker.ticks});
+    ticker.ticks++;
+    ticker.meter.tick();
+    setTimeout(ticker.tick, ticker.speed-(Date.now()-ticker.lastTick));
   }
 };
 
