@@ -23,8 +23,8 @@ var displayer = {
   init: function(elements) {
     var self = this;
 
-    self.container = document.createElement('div');
-    document.body.appendChild(self.container);
+    self.container = document.querySelector('#viewport');
+
 
     //Setting up the camera
     self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000000000000);
@@ -32,7 +32,7 @@ var displayer = {
     self.camera.position.y = 200;
 
     //Setting up orbit control
-    self.controls = new THREE.OrbitControls(self.camera);
+    self.controls = new THREE.OrbitControls(self.camera, self.container, self.container);
     self.controls.addEventListener('change', self.render);
 
     //Setting up the scene
