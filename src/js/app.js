@@ -4,6 +4,8 @@ var _ = require('lodash');
 var universe = require('./logic/universe');
 var ticker   = require('./logic/ticker');
 
+var informations = require('./ui/informations')
+
 window.requestAnimFrame = (function() {
   return  window.requestAnimationFrame       ||
           window.webkitRequestAnimationFrame ||
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  informations.init();
   $.get('/data.json', function(d) {
     universe.init(d.elements);
   });

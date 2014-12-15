@@ -37,6 +37,30 @@ var $ = {
       console.log('An error happened while getting %s.', url);
     };
     request.send();
+  },
+
+
+  // DOM Manipulation
+  byId: function(id) {
+    return document.getElementById(id);
+  },
+
+  byClass: function(className) {
+    return document.getElementsByClassName(className);
+  },
+
+  sel: function(sel) {
+    return document.querySelector(sel);
+  },
+
+  selA: function(sel) {
+    return document.querySelectorAll(sel);
+  },
+
+  loopEp: function(el, cb) {
+    for (var i=0; el.length; i++) {
+      cb.call(this, el[i]);
+    }
   }
 };
 
