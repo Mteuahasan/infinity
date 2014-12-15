@@ -14,7 +14,7 @@ var $ = {
           }
         }
         else {
-          console.log('An error happened while posting to %s.', url)
+          console.log('An error happened while posting to %s.', url);
         }
       }
     };
@@ -30,11 +30,11 @@ var $ = {
         cb.call(this,JSON.parse(request.responseText));
       }
       else {
-        console.log('An error happened while getting %s.', url)
+        console.log('An error happened while getting %s.', url);
       }
     };
     request.onerror = function() {
-      console.log('An error happened while getting %s.', url)
+      console.log('An error happened while getting %s.', url);
     };
     request.send();
   }

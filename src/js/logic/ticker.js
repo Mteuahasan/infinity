@@ -1,4 +1,4 @@
-var universe  = require('./universe')
+var universe  = require('./universe');
 var displayer = require('../ui/displayer');
 
 var gravity   = new Worker('../src/js/logic/workers/physic.js');
@@ -27,6 +27,6 @@ var ticker = {
     ticker.lastTick = Date.now();
     gravity.postMessage({elements: universe.elements, ticks: ticker.ticks});
   }
-}
+};
 
 module.exports = ticker;

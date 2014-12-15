@@ -3,7 +3,7 @@ var _ = require('lodash');
 var displayer = require('../ui/displayer');
 
 // Number of elements
-var N = 800;
+var N = 300;
 
 var universe = {
   elements: [],
