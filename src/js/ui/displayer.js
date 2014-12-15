@@ -15,10 +15,8 @@ var displayer = {
   scene   : null,
   renderer: null,
 
-  particle      : null,
-  particles     : null,
-  pMaterial     : null,
-  particleSystem: null,
+  sphere : null,
+  spheres: [],
 
   init: function(elements) {
     var self = this;
@@ -55,17 +53,15 @@ var displayer = {
 
 
     /**
-      * Set-particles
+      * Set spheres
     */
-    self.particles = new THREE.Geometry(),
-    self.pMaterial = new THREE.PointCloudMaterial({
-      size: 2,
-      color: 0xFFFFFF
-    });
+    var sphereGeometry = new THREE.SphereGeometry(0.5, 3, 3);
+    var sphereMaterial = new THREE.MeshPhongMaterial({color: 0xffff00});
 
-    self.particle = new THREE.Vector3(0, 0, 0);
+    self.sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
-    self.createSpheresSync(0, elements, function() {
+
+    self.createSpheresSync(elements, function() {
       var ticker = require('../logic/ticker.js');
       ticker.init();
     });
@@ -94,64 +90,28 @@ var displayer = {
     var self = this;
 
     // Ambient Light
-    // var ambientLight = new THREE.AmbientLight({color : 0xffffff});
-    // self.scene.add(ambientLight);
-  },
-
-  // Create sphere the recursive way, it takes a longer time
-  // but doesn't free the browser
-  createSpheresAsync: function(n, elements, cb) {
-    var self = this;
-    if (n===elements.length) {
-      self.particleSystem = new THREE.PointCloud(
-          self.particles,
-          self.pMaterial
-      );
-
-      self.particleSystem.sortParticles = false;
-
-      // add it to the scene
-      self.scene.add(self.particleSystem);
-      cb();
-      return;
-    }
-
-    var particle = self.particle.clone();
-    particle.x = elements[n].x;
-    particle.y = elements[n].y;
-    particle.z = elements[n].z;
-    self.particles.vertices.push(particle);
-    elements[n].particle = particle;
-
-    setTimeout(function() {
-      self.createSpheresAsync(n+1, elements, cb);
-    }, 0);
+    var ambientLight = new THREE.AmbientLight({color : 0xffffff});
+    self.scene.add(ambientLight);
   },
 
   // Create sphere in a for loop, faster and but freezes the browser
-  createSpheresSync: function(n, elements, cb) {
+  createSpheresSync: function(elements ,cb) {
     var self = this;
-    var particle = null;
+    var sphere = null;
     for (var i=0;i<elements.length;i++) {
-      particle = self.particle.clone();
-
-      particle.setX(elements[i].x)
-              .setY(elements[i].y)
-              .setZ(elements[i].z);
-
-      elements[i].particle = particle;
-      self.particles.vertices.push(particle);
+      sphere = self.sphere.clone();
+      sphere.position.x = elements[i].x;
+      sphere.position.y = elements[i].y;
+      sphere.position.z = elements[i].z;
+      self.scene.add(sphere);
+      self.spheres.push(sphere);
+      console.log(sphere);
+      // self.geo.merge(self.geo, self.sphere);
     }
 
-    self.particleSystem = new THREE.PointCloud(
-      self.particles,
-      self.pMaterial
-    );
-
-    self.particleSystem.sortParticles = false;
 
     // add it to the scene
-    self.scene.add(self.particleSystem);
+    // self.scene.add(self.geo);
     cb();
   },
 
@@ -179,11 +139,11 @@ var displayer = {
   updatePosition: function(elements) {
     var self = this;
     for (var i=0; i<elements.length; i++) {
-      self.particles.vertices[i].x = elements[i].x;
-      self.particles.vertices[i].y = elements[i].y;
-      self.particles.vertices[i].z = elements[i].z;
+      self.spheres[i].position.x = elements[i].x;
+      self.spheres[i].position.y = elements[i].y;
+      self.spheres[i].position.z = elements[i].z;
     }
-    self.particleSystem.geometry.verticesNeedUpdate = true;
+    //self.particleSystem.geometry.verticesNeedUpdate = true;
   }
 };
 
