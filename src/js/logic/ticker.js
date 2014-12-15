@@ -14,7 +14,8 @@ var ticker = {
 
     gravity.addEventListener('message', function(e) {
       universe.elements = e.data;
-      setTimeout(self.tick, self.speed-(Date.now()-self.lastTick));
+      if (self.run)
+        setTimeout(self.tick, self.speed-(Date.now()-self.lastTick));
     }, false);
   },
 

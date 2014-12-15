@@ -1,10 +1,15 @@
+var worker = self;
+
 // Worker can be called and compute new position
-self.addEventListener('message', function(e) {
+worker.addEventListener('message', function(e) {
   elements = e.data;
-  elements = gravity.computeVelocity(0, elements);
-  self.postMessage(elements);
+  gravity.computeVelocity(0, elements);
 }, false);
 
+
+/**
+  * COMPUTE THE GRAVITY BETWEEN PARTICLES
+*/
 var gravity = {
   // G is multiply by a coefficient to control speed.
   COEF: Math.pow(10, 9),
@@ -12,41 +17,51 @@ var gravity = {
 
   computeVelocity: function(index, elements) {
     var self = this;
-    var e1 = elements[index];
-    var e2, d, f, veX, veY, veZ;
+    var e1, e2, d, f, veX, veY, veZ;
+    e1 = elements[index];
 
     if (index === elements.length-1) {
       self.computePosition(e1);
-      return (elements);
+      worker.postMessage(elements);
+      return;
     };
 
-    for (var i=index+1;i<elements.length;i++) {
-      e2 = elements[i];
-      d = self.computeSquareDistance(e1, e2);
-      if (d > (e1.size + e2.size)) {
-        f = self.G*((e1.m*e2.m)/d);
+    //for (var j=0; j<elements.length; j++) {
+      //e1 = elements[j];
 
-        veX = e2.x - e1.x;
-        veY = e2.y - e1.y;
-        veZ = e2.z - e1.z;
+      for (var i=index+1;i<elements.length;i++) {
+        e2 = elements[i];
+        d = self.computeSquareDistance(e1, e2);
+        if (e1.m && e2.m) {
+          if (d > (e1.size + e2.size)) {
+            f = self.G*((e1.m*e2.m)/d);
 
-        e1.vX += f*(veX)*self.COEF;
-        e1.vY += f*(veY)*self.COEF;
-        e1.vZ += f*(veZ)*self.COEF;
+            veX = e2.x - e1.x;
+            veY = e2.y - e1.y;
+            veZ = e2.z - e1.z;
 
-        e2.vX += -f*(veX)*self.COEF;
-        e2.vY += -f*(veY)*self.COEF;
-        e2.vZ += -f*(veZ)*self.COEF;
+            e1.vX += f*(veX)*self.COEF;
+            e1.vY += f*(veY)*self.COEF;
+            e1.vZ += f*(veZ)*self.COEF;
+
+            e2.vX += -f*(veX)*self.COEF;
+            e2.vY += -f*(veY)*self.COEF;
+            e2.vZ += -f*(veZ)*self.COEF;
+          }
+          else {
+            collider.computeAngle(e1, e2, d);
+          }
+        }
       }
-      else {
-        collider.computeAngle(e1, e2, d);
-      }
-    }
 
-    self.computePosition(e1);
+      self.computePosition(e1);
+    //}
 
-    // Re-call the function for the next element
-    return self.computeVelocity(index+1, elements);
+    // self.computePosition(e1);
+    // worker.postMessage(elements);
+    // return;
+    //Re-call the function for the next element
+    return gravity.computeVelocity(index+1, elements);
   },
 
   // Compute the square of the distance between 2 elements
@@ -62,20 +77,27 @@ var gravity = {
   }
 };
 
+
+/**
+  * COMPUTE COLLISION TO HANDLE BOUNCE AND MERGE
+*/
 var collider = {
   computeAngle: function(e1, e2) {
     var angle = 0;
 
-    angle = (e1.x*e2.x + e1.y*e2.y + e1.z*e2.z);;
-    angle /= Math.sqrt(e1.x*e1.x + e1.y*e1.y + e1.z*e1.z) *
-             Math.sqrt(e2.x*e2.x + e2.y*e2.y + e2.z*e2.z);
+    angle = (e1.vX*e2.vX + e1.vY*e2.vY + e1.vZ*e2.vZ);;
+    angle /= Math.sqrt(e1.vX*e1.vX + e1.vY*e1.vY + e1.vZ*e1.vZ) *
+             Math.sqrt(e2.vX*e2.x + e2.vY*e2.vY + e2.vZ*e2.vZ);
 
     angle = Math.acos(angle);
-
-
-    //if (angle * (180/Math.PI) >= 90) {
+    angle = angle * (180/Math.PI);
+    if (angle  <= 170 || angle >= 190) {
       this.bounce(e1, e2);
-    //}
+    }
+    else {
+      this.merge(e1, e2);
+    }
+
   },
 
   bounce: function(e1, e2, d) {
@@ -108,8 +130,27 @@ var collider = {
     e2.z += newVe2Z;
   },
 
-  merge: function() {
+  merge: function(e1, e2) {
+    e1.size += e2.size;
+    e1.m += e2.m;
 
+    //console.log(e1.m);
+
+    e1.vX = (e1.vX+e2.vX)/2;
+    e1.vY = (e1.vY+e2.vY)/2;
+    e1.vZ = (e1.vZ+e2.vZ)/2;
+
+    e2.size = 0;
+    e2.m = 0;
+
+    e2.vX = 0;
+    e2.vY = 0;
+    e2.vZ = 0;
+
+
+    e2.x = 0;
+    e2.y = 0;
+    e2.z = 0;
   }
 };
 

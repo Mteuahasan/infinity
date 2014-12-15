@@ -131,20 +131,22 @@ var displayer = {
   // Create sphere in a for loop, faster and but freezes the browser
   createSpheresSync: function(n, elements, cb) {
     var self = this;
+    var particle = null;
     for (var i=0;i<elements.length;i++) {
-      var particle = self.particle.clone();
+      particle = self.particle.clone();
 
       particle.setX(elements[i].x)
               .setY(elements[i].y)
               .setZ(elements[i].z);
 
+      elements[i].particle = particle;
       self.particles.vertices.push(particle);
     }
 
     self.particleSystem = new THREE.PointCloud(
-        self.particles,
-        self.pMaterial
-      );
+      self.particles,
+      self.pMaterial
+    );
 
     self.particleSystem.sortParticles = false;
 
