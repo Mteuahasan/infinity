@@ -5,7 +5,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  color:$control-white;
+  color: $control-white;
 }
 
 #control-bar {
@@ -15,23 +15,23 @@ html, body {
   left: 0;
   box-sizing: border-box;
   border-right: 1px $control-color solid;
-  width:400px;  
+  width:400px;
   height: 100%;
   background-color: $primary-color;
-  
+
   header {
     #logo,img{
       display: inline-block;
       width:125px;
     }
-    .separate { 
+    .separate {
       width: 185px;
     }
   }
 }
 #status{
   position: relative;
-  top:-8px;
+  top: -8px;
   text-align: center;
   display: inline-block;
   margin-left: 24px;
@@ -87,7 +87,7 @@ html, body {
     width: 135px;
     height: 135px;
     border: 1px solid $control-white;
-  } 
+  }
   .right {
     margin-top: 5px;
     margin-left: 22px;
@@ -95,11 +95,11 @@ html, body {
     width: 175px;
     height: 135px;
     text-align: center;
-    
+
     .field {
     }
     .value {
-      color:$control-color;
+      color: $control-color;
     }
     .value-bar {
       display: inline-block;
@@ -108,20 +108,17 @@ html, body {
       background-color: $control-red;
     }
     .seperate {
-      margin: 5px 0px 10px 0px; 
+      margin: 5px 0px 10px 0px;
+    }
   }
 }
 
 
 
-
-
-
 #viewport{
   position: fixed;
-  left:400px;
-  top:0px;
+  left: 400px;
+  top: 0;
   width: calc(100% - 400px);
   height: 100%;
 }
-
