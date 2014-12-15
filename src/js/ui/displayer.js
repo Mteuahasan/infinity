@@ -25,7 +25,7 @@ var displayer = {
     document.body.appendChild(self.container);
 
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000000);
+    self.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 1000000000000000);
     self.camera.position.z = 100;
     self.camera.position.y = 200;
 
@@ -38,8 +38,8 @@ var displayer = {
     self.setupLights();
 
 
-    self.scene.add(new THREE.AxisHelper(1000000));
-    self.scene.add(new THREE.AxisHelper(-1000000));
+    // self.scene.add(new THREE.AxisHelper(1000000));
+    // self.scene.add(new THREE.AxisHelper(-1000000));
 
 
     // Render
@@ -55,9 +55,8 @@ var displayer = {
     /**
       * Set spheres
     */
-    var sphereGeometry = new THREE.SphereGeometry(0.5, 3, 3);
+    var sphereGeometry = new THREE.SphereGeometry(10, 3, 3);
     var sphereMaterial = new THREE.MeshPhongMaterial({color: 0xffff00});
-
     self.sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
 
@@ -106,12 +105,8 @@ var displayer = {
       self.scene.add(sphere);
       self.spheres.push(sphere);
       console.log(sphere);
-      // self.geo.merge(self.geo, self.sphere);
     }
 
-
-    // add it to the scene
-    // self.scene.add(self.geo);
     cb();
   },
 
@@ -143,7 +138,6 @@ var displayer = {
       self.spheres[i].position.y = elements[i].y;
       self.spheres[i].position.z = elements[i].z;
     }
-    //self.particleSystem.geometry.verticesNeedUpdate = true;
   }
 };
 
