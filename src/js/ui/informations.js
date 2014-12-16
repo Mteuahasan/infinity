@@ -28,7 +28,7 @@ var informations = {
 
       var hh = date.getHours();
       var mm = date.getMinutes();
-      var ss = date.getSeconds();
+      var ss = date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds();
       return hh+':'+mm+':'+ss;
   },
 

@@ -6,109 +6,177 @@ html, body {
   padding: 0;
   overflow: hidden;
   color: $control-white;
+  font-family: 'Roboto', sans-serif;
 }
 
 #control-bar {
   position: fixed;
-  padding: 30px;
+  padding: 30px 10px;
   top: 0;
   left: 0;
   box-sizing: border-box;
-  border-right: 1px $control-color solid;
-  width:400px;
+  border-right: 2px $control-color solid;
+  width:280px;
   height: 100%;
   min-height: 800px;
   background-color: $primary-color;
 
-  header {
-    #logo,img{
+ #header {
+    #logo{
       display: inline-block;
-      width:125px;
+      width:40%;
+      vertical-align: top;
     }
-    .separate {
-      width: 185px;
+    
+    #logo img{
+      width: 100%;
     }
   }
 }
+#current_time{
+  margin-top: 10px;
+}
+  
+
 #status{
   position: relative;
   top: -8px;
   text-align: center;
   display: inline-block;
   margin-left: 24px;
-  width: 185px;
+  width: 40%;
   .online {
     display: block;
     margin: 0 auto;
-    color: $control-red;
+    color: $control-brown;
+    font-weight: 100;
+    font-size: 20pt;
   }
   .status {
     display: block;
     margin: 0 auto;
     color: $control-white;
-    font-size: 20px;
+    font-size: 10.7pt;
+    font-weight: 300;
   }
   .time {
     display: block;
     width: 100%;
-    font-size: 25px;
+    font-size: 15px;
     color: $control-color;
+    font-weight: 100;
+    letter-spacing: 4px;
   }
 }
 #name {
   display: block;
   text-align: center;
   width: 100%;
-  font-size: 25px;
+  color: $control-blue3;
+  font-size: 12pt;
   margin: 10px 0px 10px 0px;
+  letter-spacing: 2px;
+  
+  span{
+    color: $control-blue2;
+    background-color: #303F45;
+    border-radius: 4px;
+    font-size: 11pt;
+    font-weight: bold;
+    padding: 3px 6px;
+    margin-right: 5px;
+  }
+  
 }
 .seperate {
   margin-top: -5px;
   width: 100%;
+  opacity: 0.5;
+  text-align: center;
+  
+  ::after{
+
+    content: '';
+    background-color: $control-color;
+    width: 5px;
+    height: 5px;
+    border-radius: 50px;
+    top: -2px;
+    right: 0;
+    position: absolute;
+
+  }
+
+  ::before{
+
+    content: '';
+    background-color: $control-color;
+    width: 5px;
+    height: 5px;
+    border-radius: 50px;
+    top: -2px;
+    left: 0;
+    position: absolute;
+
+  }
+  
   .line{
+    
     display: inline-block;
     width: calc(100% - 20px);
     height: 1px;
     background-color: $control-color;
     margin-bottom: 2px;
-  }
-  .circle{
-    display: inline-block;
-    background-color: $control-color;
-    width: 5px;
-    height: 5px;
-    border-radius: 50px;
+    position :relative;
+  
   }
 }
+
 #box1 {
 
 }
 .box{
+  
+  text-align: center;
+  
   .left {
     margin-top: 5px;
     display: inline-block;
-    width: 135px;
-    height: 135px;
-    border: 1px solid $control-white;
+    width: 40%;
+    border: 1px solid $control-blue;
+    vertical-align: top;
+    
+    img{
+      width: 100%;
+    }
+    
   }
   .right {
     margin-top: 5px;
     margin-left: 22px;
     display: inline-block;
-    width: 175px;
-    height: 135px;
+    width: 40%;
     text-align: center;
 
-    .field {
+    .fiel {
+      color: #587980;
+      background-color: #303F45;
+      border-radius: 4px;
+      font-size: 7pt;
+      font-weight: bold;
+      padding: 3px 6px;
+      margin-right: 5px;
     }
     .value {
       color: $control-color;
+      font-weight: 100;
+      margin: 5px 0;
     }
     .value-bar {
       display: inline-block;
       height: 10px;
-      width: 120px;;
-      background-color: $control-red;
+      width: 100%;;
+      background-color: $control-brown;
     }
     .seperate {
       margin: 5px 0px 10px 0px;
@@ -118,12 +186,12 @@ html, body {
 #bottom-box {
   position: absolute;
   bottom:-250px;
-  left:400px;
-  width:calc(100% - 400px);
+  left:280px;
+  width:calc(100% - 280px);
   height: 250px;
   box-sizing: border-box;
   background-color: $primary-color;
-  border-top: 1px solid $control-color;
+  border-top: 2px solid $control-color;
   z-index: 1;
 }
 #bottom-box.active{
@@ -133,19 +201,17 @@ html, body {
 #box3 {
   padding: 5px 0px 5px 0px;
   text-align: justify;
-  height: calc(100% - 625px);
+  font-size: 10pt;
+  font-weight: 100;
+  height: 100px;
   p {
-    height:100%;
-    margin: 0;
-    padding: 0;
+    height:80%;
     overflow-y: scroll;
+    padding: 0 10px;
   }
 }
 #box4 {
-  display: block;
-  width: 339px;
-  position: absolute;
-  bottom:30px;
+  width: 100%;
   .button {
     display: block;
     width: 100%;
@@ -155,12 +221,10 @@ html, body {
   }
 }
 
-
-
 #viewport{
   position: fixed;
-  left: 400px;
+  left: 280px;
   top: 0;
-  width: calc(100% - 400px);
+  width: calc(100% - 280px);
   height: 100%;
 }
