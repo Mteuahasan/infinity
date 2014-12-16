@@ -4,7 +4,7 @@ var displayer = require('../ui/displayer');
 var gravity   = new Worker('../src/js/logic/workers/physic.js');
 
 var ticker = {
-  run: true,
+  run: false,
   speed: 40,
   lastTick: 0,
   ticks: 0,

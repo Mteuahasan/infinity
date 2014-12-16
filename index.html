@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Infinity</title>
-  
+
   <link rel="stylesheet" href="build/css/main.css">
   <script src="src/js/libs/fps-meter.js" defer></script>
   <script src="build/js/app.js" defer></script>
 </head>
 <body>
-    
+
     <div id="control-bar">
         <header>
             <div id="logo">
@@ -19,7 +19,7 @@
                 <span class="online">ONLINE</span>
                 <span class="status">DATA STATUS</span>
 
-                
+
                 <div class="seperate">
                     <span class="circle"></span>
                     <span class="line"></span>
@@ -30,13 +30,13 @@
                     <span class="line"></span>
                     <span class="circle"></span>
                 </div>
-                
+
                 <span id="current_time" class="time">00:00:00</span>
                 <span id="time" class="time">00:00:00</span>
             </div>
-            
+
             <div id="name">LIFESTYSTEM 2.0</div>
-            
+
         </header>
         <div id="box1" class="box">
             <div class="seperate">
@@ -49,7 +49,7 @@
                 <span class="line"></span>
                 <span class="circle"></span>
             </div>
-            
+
             <div class="left"></div>
             <div class="right">
               <div class="fiel">AVERRAGE SPEED</div>
@@ -64,7 +64,7 @@
               <div class="value">1OO</div>
               <div class="value-bar"></div>
             </div>
-            
+
             <div class="seperate">
                 <span class="circle"></span>
                 <span class="line"></span>
@@ -76,12 +76,12 @@
                 <span class="circle"></span>
             </div>
         </div>
-      
+
         <div id="box2" class="box">
-          
+
           <div class="left"></div>
           <div class="right"></div>
-          
+
             <div class="seperate">
                 <span class="circle"></span>
                 <span class="line"></span>
@@ -96,6 +96,26 @@
     </div>
     <div id="viewport">
     </div>
-    
+
+    <script id="vertShader" type="x-shader/x-vertex">
+      attribute vec3 colors;
+      attribute float size;
+
+      varying vec3 vColor;  // 'varying' vars are passed to the fragment shader
+
+      void main() {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        vColor = colors;   // pass the color to the fragment shader
+        gl_PointSize = size;
+      }
+    </script>
+    <script id="fragShader" type="x-shader/x-fragment">
+      varying vec3 vColor;
+
+      void main() {
+        gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+      }
+    </script>
+
 </body>
 </html>

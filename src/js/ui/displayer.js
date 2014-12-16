@@ -39,8 +39,8 @@ var displayer = {
     self.setupLights();
 
 
-    self.scene.add(new THREE.AxisHelper(1000000));
-    self.scene.add(new THREE.AxisHelper(-1000000));
+    self.scene.add(new THREE.AxisHelper(1000));
+    self.scene.add(new THREE.AxisHelper(-1000));
 
 
     // Render
@@ -50,16 +50,42 @@ var displayer = {
 
     // On Resize
     window.addEventListener('resize', self.onWindowResize, false);
-    self.animate();
+    // self.animate();
 
 
     /**
     * Set-particles
     */
+
+    var uniforms = {
+      color: { type: "c", value: new THREE.Color( 0xff00ff ) },
+    };
+
+    var attributes = {
+      size: { type: 'f', value: [] },
+      colors: { type: 'c', value: []}
+    };
+
+    for (var i=0; i < 100; i++) {
+      attributes.colors.value.push(new THREE.Color( 0xcccccc ));
+    }
+
+    attributes.colors.value[9] = new THREE.Color(0xffff00);
+
+    console.log(attributes.colors);
+
+
+
+    for (var i=0; i < 100; i++) {
+      attributes.size.value.push(Math.random()*10);
+    }
+
     self.particles = new THREE.Geometry();
-    self.pMaterial = new THREE.PointCloudMaterial({
-      size: 2,
-      color: 0xFFFFFF
+    self.pMaterial = new THREE.ShaderMaterial({
+     uniforms: uniforms,
+     attributes: attributes,
+     vertexShader: document.getElementById('vertShader').textContent,
+     fragmentShader: document.getElementById('fragShader').textContent
     });
 
     self.particle = new THREE.Vector3(0, 0, 0);
