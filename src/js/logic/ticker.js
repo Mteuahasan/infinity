@@ -5,7 +5,7 @@ var gravity   = require('./gravity');
 
 var ticker = {
   run: true,
-  speed: 15,
+  speed: 0,
   lastTick: 0,
   ticks: 0,
   meter: null,
@@ -17,7 +17,7 @@ var ticker = {
       theme  : 'light',
       heat   : true,
       graph  : true,
-      left:     'auto',      // Meter left offset.
+      left:     'auto',    // Meter left offset.
       right:    '5px',     // Meter right offset.
       history: 20
     });
@@ -30,9 +30,9 @@ var ticker = {
     var elements = gravity.computeVelocity(0, universe.elements, ticker.ticks)
     displayer.updatePosition(elements);
 
-    ticker.lastTick = Date.now();
     ticker.ticks++;
     ticker.meter.tick();
+    ticker.lastTick = Date.now();
     setTimeout(ticker.tick, ticker.speed-(Date.now()-ticker.lastTick));
   }
 };

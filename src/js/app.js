@@ -5,6 +5,7 @@ var universe = require('./logic/universe');
 var ticker   = require('./logic/ticker');
 
 var informations = require('./ui/informations')
+var displayer    = require('./ui/displayer');
 
 window.requestAnimFrame = (function() {
   return  window.requestAnimationFrame       ||
@@ -22,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
       ticker.run = !ticker.run;
       if (ticker.run)
         ticker.tick();
+    }
+    else if (e.keyCode === 82) {
+      displayer.showHideHelpers();
     }
   });
 

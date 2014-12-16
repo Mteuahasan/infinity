@@ -10,10 +10,13 @@ var displayer = {
 
   container: null,
 
-  model   : null,
-  camera  : null,
-  scene   : null,
-  renderer: null,
+  model      : null,
+  camera     : null,
+  scene      : null,
+  renderer   : null,
+  helper     : null,
+  helperBis  : null,
+  showHelpers: false,
 
   particle      : null,
   particles     : null,
@@ -42,9 +45,11 @@ var displayer = {
 
     //Setting up the scene
     self.scene = new THREE.Scene();
-    self.scene.add(new THREE.AxisHelper(1000));
-    self.scene.add(new THREE.AxisHelper(-1000));
+
     self.setupLights();
+    self.helper    = new THREE.AxisHelper(1000);
+    self.helperBis = new THREE.AxisHelper(-1000);
+    self.showHideHelpers();
 
 
     //Setting up orbit control
@@ -74,7 +79,10 @@ var displayer = {
       attributes.size.value.push(Math.random()*10);
     }
 
-    attributes.colors.value[9] = new THREE.Color(0xffff00);
+    attributes.colors.value[6] = new THREE.Color(0x00ff00);
+    attributes.colors.value[7] = new THREE.Color(0x0000ff);
+    attributes.colors.value[8] = new THREE.Color(0xffff00);
+    attributes.colors.value[9] = new THREE.Color(0xff0000);
 
     self.particles = new THREE.Geometry();
     self.pMaterial = new THREE.ShaderMaterial({
@@ -111,10 +119,17 @@ var displayer = {
     })();
   },
 
-  particleRender: function(ctx) {
-    ctx.beginPath();
-    ctx.arc( 0, 0, 1, 0,  Math.PI * 2, true );
-    ctx.fill();
+  showHideHelpers: function() {
+    var self = this;
+    self.showHelpers = !self.showHelpers;
+    if (self.showHelpers) {
+      self.scene.add(self.helper);
+      self.scene.add(self.helperBis);
+    }
+    else {
+      self.scene.remove(self.helper);
+      self.scene.remove(self.helperBis);
+    }
   },
 
   setupLights: function() {

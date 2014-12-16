@@ -11,7 +11,7 @@ var collider = {
     angle = Math.acos(angle) * (180/Math.PI);
 
     if (angle < 150 || angle > 210) {
-      this.bounce(e1, e2);
+      //this.bounce(e1, e2);
     }
     else {
       this.merge(e1, e2);
