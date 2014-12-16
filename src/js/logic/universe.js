@@ -3,7 +3,7 @@ var _ = require('lodash');
 var displayer = require('../ui/displayer');
 
 // Number of elements
-var N = 1000;
+var N = 1500;
 
 var universe = {
   elements: [],
@@ -15,7 +15,7 @@ var universe = {
     for (var i=0;i<N;i++) {
       clone = _.cloneDeep(elements[0]);
 
-      speed = Math.random()*30+10;
+      speed = Math.random()*5+15;
 
       // randomize speed on each axis
       do {

@@ -2,7 +2,7 @@ var collider = {
   computeAngle: function(e1, e2) {
     var angle = 0;
 
-    // Some operations have been simplified and compacted for performances
+    // Some operations have been compacted for performances
     angle = (e1.vX*e2.vX + e1.vY*e2.vY + e1.vZ*e2.vZ) /
             Math.sqrt(
               (Math.pow(e1.vX,2) + Math.pow(e1.vY,2) + Math.pow(e1.vZ,2)) *
@@ -10,13 +10,15 @@ var collider = {
 
     angle = Math.acos(angle) * (180/Math.PI);
 
-    if (angle < 150 || angle > 210)
+    if (angle < 150 || angle > 210) {
       this.bounce(e1, e2);
-    else
+    }
+    else {
       this.merge(e1, e2);
+    }
   },
 
-  bounce: function(e1, e2, d) {
+  bounce: function(e1, e2) {
     var deltaM = e1.m - e2.m;
     var sumM   = e1.m + e2.m;
 

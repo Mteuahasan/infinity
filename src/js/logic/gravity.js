@@ -27,6 +27,7 @@ var gravity = {
       e2 = elements[i];
 
       if (e1.m && e2.m) {
+        // Some operations have been compacted for performances
         // d is the square distance between e1 and e2
         d = Math.pow((e1.x-e2.x),2)+Math.pow((e1.y-e2.y),2)+Math.pow((e1.z-e2.z),2);
 
