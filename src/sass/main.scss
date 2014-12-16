@@ -11,14 +11,14 @@ html, body {
 
 #control-bar {
   position: fixed;
-  padding: 30px 10px;
+  padding: 15px 10px;
   top: 0;
   left: 0;
   box-sizing: border-box;
   border-right: 2px $control-color solid;
   width:280px;
   height: 100%;
-  min-height: 800px;
+  min-height: 720px;
   background-color: $primary-color;
 
  #header {
@@ -183,27 +183,34 @@ html, body {
     }
   }
 }
-#bottom-box {
+
+
+#popup-box {
   position: absolute;
   bottom:-250px;
-  left:280px;
-  width:calc(100% - 280px);
-  height: 250px;
+  left:calc(50% - 110px);
+  top:100%;
+  width:500px;
+  height: 400px;
   box-sizing: border-box;
   background-color: $primary-color;
-  border-top: 2px solid $control-color;
+  border: 2px solid $control-color;
   z-index: 1;
+  opacity: 0;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
 }
-#bottom-box.active{
-  bottom: 0 !important;
+#popup-box.active{
+  top:calc(50% - 200px) !important;
+  opacity: 1 !important;
 }
 
+
 #box3 {
-  padding: 5px 0px 5px 0px;
   text-align: justify;
   font-size: 10pt;
   font-weight: 100;
-  height: calc(100% - 650px);
+  height: calc(100% - 635px);
   p {
     box-sizing: border-box;
     height:100%;
@@ -214,7 +221,7 @@ html, body {
 #box4 {
   width: 260px;
   position: absolute;
-  bottom: 30px;
+  bottom: 15px;
   
   .button {
     display: block;
@@ -230,5 +237,6 @@ html, body {
   left: 280px;
   top: 0;
   width: calc(100% - 280px);
+  min-width: calc(860px - 280px);
   height: 100%;
 }
