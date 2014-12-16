@@ -43,20 +43,9 @@ var displayer = {
     self.scene.add(new THREE.AxisHelper(-1000));
 
 
-    // Render
-    self.renderer = new THREE.WebGLRenderer({clearAlpha: 1});
-    self.renderer.setSize(self.container.offsetWidth, self.container.offsetHeight);
-    self.container.appendChild(self.renderer.domElement);
-
-    // On Resize
-    window.addEventListener('resize', self.onWindowResize, false);
-    self.animate();
-
-
     /**
     * Set-particles
     */
-
     var uniforms = {
       color: { type: "c", value: new THREE.Color( 0xff00ff ) },
     };
@@ -66,19 +55,12 @@ var displayer = {
       colors: { type: 'c', value: []}
     };
 
-    for (var i=0; i < 100; i++) {
+    for (var i=0; i < 1500; i++) {
       attributes.colors.value.push(new THREE.Color( 0xcccccc ));
+      attributes.size.value.push(Math.random()*10);
     }
 
     attributes.colors.value[9] = new THREE.Color(0xffff00);
-
-    console.log(attributes.colors);
-
-
-
-    for (var i=0; i < 100; i++) {
-      attributes.size.value.push(Math.random()*10);
-    }
 
     self.particles = new THREE.Geometry();
     self.pMaterial = new THREE.ShaderMaterial({
@@ -95,6 +77,14 @@ var displayer = {
       ticker.init();
     });
 
+
+    /**
+      * RENDER
+    */
+    self.renderer = new THREE.WebGLRenderer({clearAlpha: 1});
+    self.renderer.setSize(self.container.offsetWidth, self.container.offsetHeight);
+    self.container.appendChild(self.renderer.domElement);
+
     // Set up animation
     self.meter = new FPSMeter({
       theme  : 'dark',
@@ -102,10 +92,14 @@ var displayer = {
       graph  : true,
       history: 20
     });
-    (function animloop(){
-      requestAnimFrame(animloop);
-      self.meter.tick();
+
+    // On Resize
+    window.addEventListener('resize', self.onWindowResize, false);
+    (function animLoop() {
       self.render();
+      self.animate();
+      self.meter.tick();
+      requestAnimFrame(animLoop);
     })();
   },
 
@@ -157,11 +151,8 @@ var displayer = {
   },
 
   animate: function() {
-    requestAnimationFrame(displayer.animate);
     displayer.controls.update();
-    displayer.render();
   },
-
 
   // Render the scene
   render: function() {
