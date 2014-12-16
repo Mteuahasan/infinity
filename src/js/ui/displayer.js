@@ -55,7 +55,7 @@ var displayer = {
       colors: { type: 'c', value: []}
     };
 
-    for (var i=0; i < 1500; i++) {
+    for (var i=0; i < elements.length; i++) {
       attributes.colors.value.push(new THREE.Color( 0xcccccc ));
       attributes.size.value.push(Math.random()*10);
     }
