@@ -54,7 +54,7 @@ var gravity = {
           e2.vZ += -deltaVel;
         }
         else {
-          collider.computeAngle(e1, e2);
+          //collider.computeAngle(e1, e2);
         }
       }
     }

@@ -15,7 +15,7 @@ var universe = {
     for (var i=0;i<N;i++) {
       clone = _.cloneDeep(elements[0]);
 
-      speed = 30;
+      speed = Math.random()*1+4;
 
       // randomize speed on each axis
       do {
