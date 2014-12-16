@@ -17,6 +17,7 @@ html, body {
   border-right: 1px $control-color solid;
   width:400px;
   height: 100%;
+  min-height: 800px;
   background-color: $primary-color;
 
   header {
@@ -112,6 +113,45 @@ html, body {
     .seperate {
       margin: 5px 0px 10px 0px;
     }
+  }
+}
+#bottom-box {
+  position: absolute;
+  bottom:-250px;
+  left:400px;
+  width:calc(100% - 400px);
+  height: 250px;
+  box-sizing: border-box;
+  background-color: $primary-color;
+  border-top: 1px solid $control-color;
+  z-index: 1;
+}
+#bottom-box.active{
+  bottom: 0 !important;
+}
+
+#box3 {
+  padding: 5px 0px 5px 0px;
+  text-align: justify;
+  height: calc(100% - 625px);
+  p {
+    height:100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+  }
+}
+#box4 {
+  display: block;
+  width: 339px;
+  position: absolute;
+  bottom:30px;
+  .button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 20px;
   }
 }
 
