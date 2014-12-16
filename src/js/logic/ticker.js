@@ -5,7 +5,7 @@ var gravity   = require('./gravity');
 
 var ticker = {
   run: true,
-  speed: 0,
+  speed: 15,
   lastTick: 0,
   ticks: 0,
   meter: null,

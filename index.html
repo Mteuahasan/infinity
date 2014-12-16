@@ -5,8 +5,6 @@
   <title>Infinity</title>
 
   <link rel="stylesheet" href="build/css/main.css">
-  <script src="src/js/libs/fps-meter.js" defer></script>
-  <script src="build/js/app.js" defer></script>
 </head>
 <body>
 
@@ -30,79 +28,80 @@
             </div>
             
             <div id="name"><span>NAME:</span></soan>LIFESTYSTEM 2.0</div>
-            
-        </div>
-        <div id="box1" class="box">
-            <div class="seperate">
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
-            <div class="left"><img src="img/prisme.png"/></div>
-            <div class="right">
-              <div class="fiel">AVERRAGE SPEED</div>
-              <div class="value">193KM/H</div>
-              <div class="fiel">NUMBER OF ATOM</div>
-              <div class="value">1OO</div>
-              
-              <div class="value-bar"></div>
-            </div>
-
-            <div class="seperate">
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
-        </div>
-
-        <div id="box2" class="box">
-          <div class="left"><img src="img/triangle.png" style="position:relative;top:2px;"/></div>
-
-          <div class="right">
-              <div class="fiel">AVERRAGE SPEED</div>
-              <div class="value">193KM/H</div>
-              <div class="fiel">NUMBER OF ATOM</div>
-              <div class="value">1OO</div>
-              
-              <div class="value-bar"></div>
-            
-          </div>
-            <div class="seperate">
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
-          </div>
-          <div id="box3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-          <div id="box4">
-              <div class="seperate">
-                <span class="line"></span>
-                <span class="line"></span>
-              </div>
-            <div class="button">[ RESTART SYST. ]</div>
-          </div>
+    </div>
+    <div id="box1" class="box">
+      <div class="seperate">
+        <span class="line"></span>
+        <span class="line"></span>
       </div>
-    <div id="viewport">
+      <div class="left"><img src="img/prisme.png"/></div>
+      <div class="right">
+        <div class="fiel">AVERRAGE SPEED</div>
+        <div class="value">193KM/H</div>
+        <div class="fiel">NUMBER OF ATOM</div>
+        <div class="value">1OO</div>
+
+        <div class="value-bar"></div>
+      </div>
+
+      <div class="seperate">
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
     </div>
 
-    <script id="vertShader" type="x-shader/x-vertex">
-      attribute vec3 colors;
-      attribute float size;
+    <div id="box2" class="box">
+      <div class="left"><img src="img/triangle.png" style="position:relative;top:2px;"/></div>
 
-      varying vec3 vColor;  // 'varying' vars are passed to the fragment shader
+      <div class="right">
+        <div class="fiel">AVERRAGE SPEED</div>
+        <div class="value">193KM/H</div>
+        <div class="fiel">NUMBER OF ATOM</div>
+        <div class="value">1OO</div>
 
-      void main() {
-        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-        vColor = colors;   // pass the color to the fragment shader
-        gl_PointSize = size;
-      }
-    </script>
-    <script id="fragShader" type="x-shader/x-fragment">
-      varying vec3 vColor;
+        <div class="value-bar"></div>
 
-      void main() {
-        gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
-      }
-    </script>
+      </div>
+      <div class="seperate">
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+      </div>
+      <div id="box3">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div id="box4">
+        <div class="seperate">
+        <span class="line"></span>
+        <span class="line"></span>
+        </div>
+      <div class="button">[ RESTART SYST. ]</div>
+      </div>
+    </div>
+  <div id="viewport">
+  </div>
 
+  <script id="vertShader" type="x-shader/x-vertex">
+    attribute vec3 colors;
+    attribute float size;
+
+    varying vec3 vColor;  // 'varying' vars are passed to the fragment shader
+
+    void main() {
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    vColor = colors;   // pass the color to the fragment shader
+    gl_PointSize = size;
+    }
+  </script>
+  <script id="fragShader" type="x-shader/x-fragment">
+    varying vec3 vColor;
+
+    void main() {
+    gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+    }
+  </script>
+
+  <script src="src/js/libs/fps-meter.js"></script>
+  <script src="build/js/app.js"></script>
 </body>
 </html>

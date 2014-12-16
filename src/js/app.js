@@ -34,8 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  var elements = [{
+    type: "elementary",
+    size: 1,
+    m: 1,
+    x: 0,
+    y: 0,
+    z: 0,
+    vX: 0,
+    vY: 0,
+    vZ: 0
+  }];
+
+  universe.init(elements);
   informations.init();
-  $.get('/data.json', function(d) {
-    universe.init(d.elements);
-  });
 });

@@ -25,22 +25,36 @@ var displayer = {
 
     self.container = document.querySelector('#viewport');
 
+
+    /**
+      * RENDER
+    */
+    self.renderer = new THREE.WebGLRenderer({clearAlpha: 1});
+    self.renderer.setSize(self.container.offsetWidth, self.container.offsetHeight);
+    self.container.appendChild(self.renderer.domElement);
+
+
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, self.container.offsetWidth / self.container.offsetHeight, 2, 1000000000);
+    self.camera = new THREE.PerspectiveCamera(55, self.container.offsetWidth / self.container.offsetHeight, 2, 100000000);
     self.camera.position.z = 1000;
     self.camera.position.y = 1000;
+
+
+    //Setting up the scene
+    self.scene = new THREE.Scene();
+    self.scene.add(new THREE.AxisHelper(1000));
+    self.scene.add(new THREE.AxisHelper(-1000));
+    self.setupLights();
+
 
     //Setting up orbit control
     self.controls = new THREE.OrbitControls(self.camera, self.container, self.container);
     self.controls.addEventListener('change', self.render);
 
-    //Setting up the scene
-    self.scene = new THREE.Scene();
-    self.setupLights();
 
 
-    self.scene.add(new THREE.AxisHelper(1000));
-    self.scene.add(new THREE.AxisHelper(-1000));
+    // On Resize
+    window.addEventListener('resize', self.onWindowResize, false);
 
 
     /**
@@ -79,13 +93,9 @@ var displayer = {
 
 
     /**
-      * RENDER
+      * RAF main anim loop
     */
-    self.renderer = new THREE.WebGLRenderer({clearAlpha: 1});
-    self.renderer.setSize(self.container.offsetWidth, self.container.offsetHeight);
-    self.container.appendChild(self.renderer.domElement);
-
-    // Set up animation
+    // Set up fps meter
     self.meter = new FPSMeter({
       theme  : 'dark',
       heat   : true,
@@ -93,8 +103,6 @@ var displayer = {
       history: 20
     });
 
-    // On Resize
-    window.addEventListener('resize', self.onWindowResize, false);
     (function animLoop() {
       self.render();
       self.animate();
