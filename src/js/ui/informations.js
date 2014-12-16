@@ -11,7 +11,10 @@ var informations = {
     // $.loopEl(elements, function(el) {
     //   el.classList.add('hover');
     // });
-    
+    informations.displayTime();
+
+  },
+  displayTime:function(){
     var startDate = new Date();
     var endDate;
     
@@ -53,9 +56,6 @@ var informations = {
       timeLaps.innerHTML=delta.hour+':'+delta.min+':'+delta.sec;
       //timeLaps.innerHTML=timeLaps(timeLaps.innerHTML);
     },1000);
-
-
-
   }
 };
 
