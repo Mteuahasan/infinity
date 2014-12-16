@@ -14,6 +14,7 @@ var displayer = {
   camera     : null,
   scene      : null,
   renderer   : null,
+  attributes : null,
   helper     : null,
   helperBis  : null,
   showHelpers: false,
@@ -66,28 +67,24 @@ var displayer = {
     * Set-particles
     */
     var uniforms = {
-      color: { type: "c", value: new THREE.Color( 0xff00ff ) },
+      color: { type: "c", value: new THREE.Color(0xff00ff) },
     };
 
-    var attributes = {
+    self.attributes = {
       size: { type: 'f', value: [] },
       colors: { type: 'c', value: []}
     };
 
     for (var i=0; i < elements.length; i++) {
-      attributes.colors.value.push(new THREE.Color( 0xcccccc ));
-      attributes.size.value.push(Math.random()*10);
+      self.attributes.colors.value.push(new THREE.Color(0xcccccc));
+      self.attributes.size.value.push(1);
     }
-
-    attributes.colors.value[6] = new THREE.Color(0x00ff00);
-    attributes.colors.value[7] = new THREE.Color(0x0000ff);
-    attributes.colors.value[8] = new THREE.Color(0xffff00);
-    attributes.colors.value[9] = new THREE.Color(0xff0000);
+    console.log(self.attributes);
 
     self.particles = new THREE.Geometry();
     self.pMaterial = new THREE.ShaderMaterial({
      uniforms: uniforms,
-     attributes: attributes,
+     attributes: self.attributes,
      vertexShader: document.getElementById('vertShader').textContent,
      fragmentShader: document.getElementById('fragShader').textContent
     });
@@ -188,11 +185,13 @@ var displayer = {
   updatePosition: function(elements) {
     var self = this;
     for (var i=0; i<elements.length; i++) {
+      self.attributes.size.value[i] = elements[i].size;
       self.particles.vertices[i].x = elements[i].x;
       self.particles.vertices[i].y = elements[i].y;
       self.particles.vertices[i].z = elements[i].z;
     }
     self.particleSystem.geometry.verticesNeedUpdate = true;
+    self.attributes.size.needsUpdate = true;
   }
 };
 

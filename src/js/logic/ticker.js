@@ -33,7 +33,8 @@ var ticker = {
     ticker.ticks++;
     ticker.meter.tick();
     ticker.lastTick = Date.now();
-    setTimeout(ticker.tick, ticker.speed-(Date.now()-ticker.lastTick));
+    if (ticker.run)
+      setTimeout(ticker.tick, ticker.speed-(Date.now()-ticker.lastTick));
   }
 };
 

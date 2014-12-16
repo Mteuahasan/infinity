@@ -5,7 +5,7 @@ var collider = require('./collider');
 */
 var gravity = {
   // G is multiply by a coefficient to control speed.
-  G: 6.67384*Math.pow(10, -11)*Math.pow(10, 9),
+  G: 6.67384*Math.pow(10, -11)*Math.pow(10, 5),
 
   computeVelocity: function(index, elements, ticks) {
     var self = this;
@@ -32,7 +32,6 @@ var gravity = {
         d = Math.pow((e1.x-e2.x),2)+Math.pow((e1.y-e2.y),2)+Math.pow((e1.z-e2.z),2);
 
         if (d > (e1.size + e2.size)) {
-
           f = self.G*((e1.m*e2.m)/d);
 
           // Set-up the new new velocity on x for e1 and e2
@@ -53,8 +52,8 @@ var gravity = {
           e1.vZ += deltaVel;
           e2.vZ += -deltaVel;
         }
-        else {
-          collider.computeAngle(e1, e2);
+        else if (ticks>3) {
+          collider.computeAngle(e1, e2, f);
         }
       }
     }

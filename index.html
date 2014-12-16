@@ -87,16 +87,16 @@
     varying vec3 vColor;  // 'varying' vars are passed to the fragment shader
 
     void main() {
-    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-    vColor = colors;   // pass the color to the fragment shader
-    gl_PointSize = size;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+      vColor = colors;   // pass the color to the fragment shader
+      gl_PointSize = size;
     }
   </script>
   <script id="fragShader" type="x-shader/x-fragment">
     varying vec3 vColor;
 
     void main() {
-    gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+      gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
     }
   </script>
 
