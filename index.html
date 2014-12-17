@@ -5,92 +5,109 @@
   <title>Infinity</title>
 
   <link rel="stylesheet" href="build/css/main.css">
+  <script src="src/js/libs/fps-meter.js" defer></script>
+  <script src="src/js/libs/particles.min.js" defer></script>
+  <script src="build/js/app.js" defer></script>
 </head>
 <body>
-
-  <div id="popup-box" class="">
-    <span class="popup-titre">Initialisation du nombre de particules <span class="blink">_</span>
-    </span>
-    <span class="etape1-descript">
-      Veuillez définir le nombre de particules
-      N à générer<br/> avec 1 < N < 2000
-    </span>
-    <form id="etape1-form">
-      <input type="number" class="etape1-field" placeholder="0000">
-      <input type="submit" class="etape1-submit" value="VALIDER">
-    </form>
-
-  </div>
-  <div id="control-bar">
-    <div class="hide" id="hide">&#8676;</div>
-    <div id="header" class="box">
-      <div id="logo">
+    <div id="popup-box" class="">
+      <span class="popup-titre">Initialisation du nombre de particules <span class="blink">_</span>
+      </span>
+      <span class="etape1-descript">
+        Veuillez définir le nombre de particules
+        N à générer<br/> avec 1 < N < 2000
+      </span>
+      <form id="etape1-form">
+        <input type="number" class="etape1-field" placeholder="0000">
+        <input type="submit" class="etape1-submit" value="VALIDER">
+      </form>
+    </div>
+    
+    <div id="loader">
+      <div id="particles-js"></div>
+      <div id="loader-content">
         <img class="logo" src="img/logo.png"/>
+        <span class="name">LIFE <span>SYSTEM</span> 2.0</span>
+        <div class="seperate sepLoad">
+            <span class="line"></span>
+        </div>
+        <p>Derrière la surface visible des chose, se trouve l'infini des possibilités</p>
+        <span class="synchro">Synchronisation en cours <span class="lodash">_</span></span>
+        <button class="btn-start">START</button>
       </div>
-      <div id="status">
-        <span class="online">ONLINE</span>
-        <span class="status">DATA STATUS</span>
+    </div>
+    
+    <div id="control-bar">
+      <div class="hide" id="hide">&#8676;</div>
+        <div id="header" class="box">
+            <div id="logo">
+                <img src="img/logo.png"/>
+            </div>
+            <div id="status">
+                <span class="online">ONLINE</span>
+                <span class="status">DATA STATUS</span>
 
-        <div class="seperate">
-          <span class="line"></span>
-          <span class="line"></span>
+                <div class="seperate">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+
+                <span id="current_time" class="time">00:00:00</span>
+                <span id="time" class="time">00:00:00</span>
+            </div>
+            
+            <div id="name"><span>NAME:</span></soan>LIFESTYSTEM 2.0</div>
+            
+        </div>
+        <div id="box1" class="box">
+            <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+            <div class="left"><img src="img/prisme.png"/></div>
+            <div class="right">
+              <div class="fiel">AVERRAGE SPEED</div>
+              <div class="value">193KM/H</div>
+              <div class="fiel">NUMBER OF ATOM</div>
+              <div class="value">1OO</div>
+              
+              <div class="value-bar"></div>
+            </div>
+
+            <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
         </div>
 
-        <span id="current_time" class="time">00:00:00</span>
-        <span id="time" class="time">00:00:00</span>
-      </div>
+        <div id="box2" class="box">
+          <div class="left"><img src="img/triangle.gif"/></div>
 
-      <div id="name"><span>NAME:</span>LIFESTYSTEM 2.0</div>
-    </div>
-    <div id="box1" class="box">
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
+          <div class="right">
+              <div class="fiel">AVERRAGE SPEED</div>
+              <div class="value">193KM/H</div>
+              <div class="fiel">NUMBER OF ATOM</div>
+              <div class="value">1OO</div>
+              
+              <div class="value-bar"></div>
+            
+          </div>
+            <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+          </div>
+          <div id="box3">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div id="box4">
+              <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+              </div>
+            <div class="button">[ RESTART SYST. ]</div>
+          </div>
       </div>
-      <div class="left"><img src="img/prisme.png"/></div>
-      <div class="right">
-        <div class="fiel">AVERRAGE SPEED</div>
-        <div class="value">193KM/H</div>
-        <div class="fiel">NUMBER OF ATOM</div>
-        <div class="value">1OO</div>
-
-        <div class="value-bar"></div>
-      </div>
-
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-
-    <div id="box2" class="box">
-      <div class="left"><img src="img/triangle.gif" style="position:relative;top:2px;"/></div>
-
-      <div class="right">
-        <div class="fiel">AVERRAGE SPEED</div>
-        <div class="value">193KM/H</div>
-        <div class="fiel">NUMBER OF ATOM</div>
-        <div class="value">1OO</div>
-
-        <div class="value-bar"></div>
-
-      </div>
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <div id="box3">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-    <div id="box4">
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-      <div class="button"><a href="">[ RESTART SYST. ]</a></div>
-    </div>
-  </div>
   <div id="viewport"></div>
 
   <script id="vertShader" type="x-shader/x-vertex">
