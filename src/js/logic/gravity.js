@@ -1,3 +1,5 @@
+'use strict';
+
 var collider = require('./collider');
 
 /**
@@ -5,7 +7,7 @@ var collider = require('./collider');
 */
 var gravity = {
   // G is multiply by a coefficient to control speed.
-  G: 6.67384*Math.pow(10, -11)*Math.pow(10, 5),
+  G: 6.67384*Math.pow(10, -11)*Math.pow(10, 6),
 
   computeVelocity: function(index, elements, ticks) {
     var self = this;

@@ -1,3 +1,5 @@
+'use strict';
+
 var collider = {
   computeAngle: function(e1, e2, f) {
     var angle = 0;
