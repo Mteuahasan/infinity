@@ -1,8 +1,6 @@
 'use strict';
 
 var $ = require('../tools');
-var displayer = require('./displayer');
-
 var informations = {
 
   startDate : new Date(),
@@ -11,17 +9,18 @@ var informations = {
   init: function() {
     this.displayTime();
     this.setEvents();
-    this.particle();
-      
-    $.sel('.btn-start').addEventListener('click', informations.hideLoader, false);
+    //this.particle();
+
   },
-    
+
   hideLoader : function(){
     var loader = $.byId('loader');
     loader.className = 'hide';
     setTimeout(function(){
-     loader.remove();  
+     loader.remove();
     },1000);
+    var ticker = require('../logic/ticker');
+    ticker.tick();
   },
 
   setEvents: function() {
@@ -34,6 +33,7 @@ var informations = {
         $.byId('control-bar').classList.add('hidden');
       }
     });
+    $.sel('.btn-start').addEventListener('click', informations.hideLoader, false);
   },
 
   displayTime: function(){
@@ -49,13 +49,13 @@ var informations = {
 
 
   getTime : function(){
-      var date = new Date();
-      informations.endDate = date;
+    var date = new Date();
+    informations.endDate = date;
 
-      var hh = date.getHours();
-      var mm = date.getMinutes();
-      var ss = date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds();
-      return hh+':'+mm+':'+ss;
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    var ss = date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds();
+    return hh+':'+mm+':'+ss;
   },
 
   getDateDiff : function(date1, date2){
@@ -76,10 +76,10 @@ var informations = {
 
     return diff;
   },
-    
-    
+
+
   particle : function(){
-  
+
     particlesJS('particles-js', {
       particles: {
         color: '#fff',
@@ -126,7 +126,6 @@ var informations = {
       /* Retina Display Support */
       retina_detect: true
     });
-  
   }
 };
 

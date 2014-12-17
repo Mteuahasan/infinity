@@ -72,8 +72,6 @@ var displayer = {
     self.controls.addEventListener('change', self.render);
 
 
-
-
     // On Resize using the js/libs/resize.js
     addResizeListener(self.container, self.onWindowResize);
 

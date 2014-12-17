@@ -19,7 +19,6 @@ window.requestAnimFrame = (function() {
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
-
   window.addEventListener('keyup', function(e) {
     if (e.keyCode === 32) {
       ticker.run = !ticker.run;
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     vY: 0,
     vZ: 0
   }];
-
   universe.init(elements);
   informations.init();
 });
