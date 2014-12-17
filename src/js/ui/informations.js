@@ -9,7 +9,7 @@ var informations = {
   init: function() {
     this.displayTime();
     this.setEvents();
-    //this.particle();
+    this.particle();
 
   },
 
