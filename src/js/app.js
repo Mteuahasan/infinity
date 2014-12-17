@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
     z: 0,
     vX: 0,
     vY: 0,
-    vZ: 0
+    vZ: 0,
+    speed: 0,
   }];
   universe.init(elements);
   informations.init();

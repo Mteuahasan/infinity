@@ -219,21 +219,21 @@ var displayer = {
   createCanvasTexture : function() {
     var self = this;
 
-    self.canvas      = document.createElement( 'canvas' );
-    self.context     = self.canvas.getContext( '2d' );
+    self.canvas  = document.createElement('canvas');
+    self.context = self.canvas.getContext('2d');
 
-    self.canvas.width            = 50;
-    self.canvas.height           = 50;
+    self.canvas.width  = 500;
+    self.canvas.height = 500;
 
-    var center = Math.round(50) * 0.5;
+    var center = Math.round(500) * 0.5;
 
     // Preview
-    //self.context.clearRect( 0, 0, 50, 50 );
-    self.context.fillStyle   = "#ff00ff";
+    //self.context.clearRect(0, 0, 50, 50);
+    self.context.fillStyle   = "#fff";
     self.context.shadowColor = "#ffff00";
-    self.context.shadowBlur  = Math.round( 25 * 0.4 );
+    self.context.shadowBlur  = Math.round(125 * 0.4);
     self.context.beginPath();
-    self.context.arc( center, center, 25 * 0.4 * 0.5, 0, Math.PI * 2 );
+    self.context.arc(center, center, 125 * 0.4 * 0.5, 0, Math.PI * 2);
     self.context.fill();
 
     document.body.appendChild(self.canvas);

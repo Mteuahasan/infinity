@@ -114,8 +114,8 @@
     varying vec4 vColor;  // 'varying' vars are passed to the fragment shader
 
     void main() {
-      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-      vColor = vec4(colors,0.5);   // pass the color to the fragment shader
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      vColor = vec4(colors,1.0);   // pass the color to the fragment shader
       gl_PointSize = size;
     }
   </script>

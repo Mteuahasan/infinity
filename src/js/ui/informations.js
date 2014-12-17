@@ -9,8 +9,8 @@ var informations = {
   init: function() {
     this.displayTime();
     this.setEvents();
-    //this.particle();
-
+    this.particle();
+    this.hideLoader();
   },
 
   hideLoader : function(){
@@ -33,7 +33,7 @@ var informations = {
         $.byId('control-bar').classList.add('hidden');
       }
     });
-    $.sel('.btn-start').addEventListener('click', informations.hideLoader, false);
+    $.sel('.btn-start').addEventListener('click', this.hideLoader, false);
   },
 
   displayTime: function(){

@@ -12,8 +12,8 @@ var collider = {
 
     angle = Math.acos(angle) * (180/Math.PI);
 
-    if ((angle < 175 || angle > 185) && f<10) {
-      this.bounce(e1, e2);
+    if ((angle<175 || angle>185) && f<10) {
+      //this.bounce(e1, e2);
     }
     else {
       this.merge(e1, e2);
@@ -34,13 +34,15 @@ var collider = {
   },
 
   merge: function(e1, e2) {
+    console.log("merge");
+    var sumM = e1.m + e2.m;
+
+    e1.vX = (e1.vX*e1.m+e2.vX*e2.m)/(2*sumM);
+    e1.vY = (e1.vY*e1.m+e2.vY*e2.m)/(2*sumM);
+    e1.vZ = (e1.vZ*e1.m+e2.vZ*e2.m)/(2*sumM);
+
     e1.size += e2.size;
-    e1.m += e2.m;
-
-
-    e1.vX = (e1.vX+e2.vX)/2;
-    e1.vY = (e1.vY+e2.vY)/2;
-    e1.vZ = (e1.vZ+e2.vZ)/2;
+    e1.m = sumM;
 
     e2.size = 0;
     e2.m = 0;
