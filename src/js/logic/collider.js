@@ -1,3 +1,5 @@
+'use strict';
+
 var collider = {
   computeAngle: function(e1, e2, f) {
     var angle = 0;
@@ -10,7 +12,7 @@ var collider = {
 
     angle = Math.acos(angle) * (180/Math.PI);
 
-    if ((angle < 160 || angle > 200) && f<1) {
+    if ((angle < 175 || angle > 185) && f<10) {
       this.bounce(e1, e2);
     }
     else {

@@ -8,8 +8,21 @@
 </head>
 <body>
 
-  <div id="popup-box" class=""></div>
+  <div id="popup-box" class="">
+    <span class="popup-titre">Initialisation du nombre de particules <span class="blink">_</span>
+    </span>
+    <span class="etape1-descript">
+      Veuillez définir le nombre de particules
+      N à générer<br/> avec 1 < N < 2000
+    </span>
+    <form id="etape1-form">
+      <input type="number" class="etape1-field" placeholder="0000">
+      <input type="submit" class="etape1-submit" value="VALIDER">
+    </form>
+
+  </div>
   <div id="control-bar">
+    <div class="hide" id="hide">&#8676;</div>
     <div id="header" class="box">
       <div id="logo">
         <img class="logo" src="img/logo.png"/>
@@ -51,7 +64,7 @@
     </div>
 
     <div id="box2" class="box">
-      <div class="left"><img src="img/triangle.png" style="position:relative;top:2px;"/></div>
+      <div class="left"><img src="img/triangle.gif" style="position:relative;top:2px;"/></div>
 
       <div class="right">
         <div class="fiel">AVERRAGE SPEED</div>
@@ -75,7 +88,7 @@
         <span class="line"></span>
         <span class="line"></span>
       </div>
-      <div class="button">[ RESTART SYST. ]</div>
+      <div class="button"><a href="">[ RESTART SYST. ]</a></div>
     </div>
   </div>
   <div id="viewport"></div>

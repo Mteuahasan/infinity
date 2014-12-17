@@ -1,7 +1,10 @@
+'use strict';
+
 var _     = require('lodash');
 
 var $      = require('../tools.js');
 var THREE  = require('../libs/orbit-control.js');
+var resize = require('../libs/resize.js');
 
 
 var displayer = {
@@ -33,6 +36,13 @@ var displayer = {
 
     self.container = document.querySelector('#viewport');
 
+    // Set up fps meter
+    self.meter = new FPSMeter({
+      theme  : 'dark',
+      heat   : true,
+      graph  : true,
+      history: 20
+    });
 
     /**
       * RENDER
@@ -63,8 +73,9 @@ var displayer = {
 
 
 
-    // On Resize
-    window.addEventListener('resize', self.onWindowResize, false);
+
+    // On Resize using the js/libs/resize.js
+    addResizeListener(self.container, self.onWindowResize);
 
     //Draw canvas
     self.createCanvasTexture();
@@ -117,13 +128,7 @@ var displayer = {
     /**
       * RAF main anim loop
     */
-    // Set up fps meter
-    self.meter = new FPSMeter({
-      theme  : 'dark',
-      heat   : true,
-      graph  : true,
-      history: 20
-    });
+
 
     (function animLoop() {
       self.render();
@@ -139,10 +144,12 @@ var displayer = {
     if (self.showHelpers) {
       self.scene.add(self.helper);
       self.scene.add(self.helperBis);
+      self.meter.show();
     }
     else {
       self.scene.remove(self.helper);
       self.scene.remove(self.helperBis);
+      self.meter.hide();
     }
   },
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash');
 
 var displayer = require('../ui/displayer');
@@ -11,11 +13,11 @@ var universe = {
   init: function(elements) {
     var self = this;
     var speed = 0;
-    var r1 = 0, r2 = 0, r3 = 0, sum = 0, tempSpeed = 0, ratio = 0;
+    var r1 = 0, r2 = 0, r3 = 0, sum = 0, tempSpeed = 0, ratio = 0, clone = null;
     for (var i=0;i<N;i++) {
       clone = _.cloneDeep(elements[0]);
 
-      speed = Math.random()*4.5+.5;
+      speed = Math.random()*.7+.5;
 
       // randomize speed on each axis
       do {

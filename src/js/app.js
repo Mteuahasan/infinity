@@ -1,3 +1,5 @@
+'use strict';
+
 var $ = require('./tools');
 var _ = require('lodash');
 

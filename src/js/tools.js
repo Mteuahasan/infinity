@@ -1,3 +1,5 @@
+'use strict';
+
 var $ = {
   post: function(url, data, cb) {
     var request = new XMLHttpRequest();

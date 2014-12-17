@@ -1,3 +1,5 @@
+'use strict';
+
 var universe  = require('./universe');
 var displayer = require('../ui/displayer');
 
