@@ -12,16 +12,16 @@
     <span class="popup-titre">Initialisation du nombre de particules <span class="blink">_</span>
     </span>
     <span class="etape1-descript">
-      Veuillez définir le nombre de particules 
+      Veuillez définir le nombre de particules
 N à générer<br/> avec 1 < N < 2000
     </span>
     <form id="etape1-form">
       <input type="range" class="etape1-field" pitch="1" max="2000" min="1" value="1000">
       <input type="submit" class="etape1-submit" value="VALIDER">
     </form>
-    
+
   </div>
-  
+
     <div id="loader">
       <div id="particles-js"></div>
       <div id="loader-content">
@@ -34,7 +34,7 @@ N à générer<br/> avec 1 < N < 2000
         <span class="synchro">Synchronisation en cours <span class="lodash">_</span></span>
         <button class="btn-start">START</button>
       </div>
-    </div>  
+    </div>
 
     <div id="control-bar">
       <div class="hide" id="hide">&#8676;</div>
@@ -119,8 +119,11 @@ N à générer<br/> avec 1 < N < 2000
 
     void main() {
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      vColor = vec4(colors,1.0);   // pass the color to the fragment shader
-      gl_PointSize = size;
+      vColor = vec4(colors,1);   // pass the color to the fragment shader
+
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+      gl_PointSize = size * 10000.0 / length(mvPosition);
     }
   </script>
   <script id="fragShader" type="x-shader/x-fragment">

@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var elements = [{
     type: "elementary",
-    size: 10,
+    size: 1,
     m: 1,
     x: 0,
     y: 0,
@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     vY: 0,
     vZ: 0,
     speed: 0,
+    children: []
   }];
   universe.init(elements);
   informations.init();

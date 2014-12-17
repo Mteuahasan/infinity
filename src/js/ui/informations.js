@@ -47,7 +47,6 @@ var informations = {
     },1000);
   },
 
-
   getTime : function(){
     var date = new Date();
     informations.endDate = date;
@@ -77,8 +76,10 @@ var informations = {
     return diff;
   },
 
+  updateSpeed: function(speed) {
+  },
 
-  particle : function(){
+  particle: function(){
 
     particlesJS('particles-js', {
       particles: {
