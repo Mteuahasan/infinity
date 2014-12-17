@@ -4,6 +4,7 @@ var _     = require('lodash');
 
 var $      = require('../tools.js');
 var THREE  = require('../libs/orbit-control.js');
+var resize = require('../libs/resize.js');
 
 
 var displayer = {
@@ -62,7 +63,8 @@ var displayer = {
 
 
     // On Resize
-    window.addEventListener('resize', self.onWindowResize, false);
+    //window.addEventListener('resize', self.onWindowResize, false);
+    addResizeListener(self.container, self.onWindowResize);
 
 
     /**

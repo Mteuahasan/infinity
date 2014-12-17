@@ -9,6 +9,10 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  background-color: #000;
+}
+
 #control-bar {
   position: fixed;
   padding: 15px 10px;
@@ -20,23 +24,39 @@ html, body {
   height: 100%;
   min-height: 720px;
   background-color: $primary-color;
+  z-index: 2;
+  transition: left .5s ease-in;
 
- #header {
-    #logo{
-      display: inline-block;
-      width:40%;
-      vertical-align: top;
-    }
-    
-    #logo img{
-      width: 100%;
+  .hide {
+    position: absolute;
+    right: -40px;
+    bottom: -8px;
+    color: #fff;
+    font-size: 200%;
+    cursor: pointer;
+    transition: all .5s ease-in;
+  }
+
+  &.hidden {
+    left: -280px;
+    .hide {
+      transform: rotateY(-180deg);
     }
   }
+}
+#logo{
+  display: inline-block;
+  width:40%;
+  vertical-align: top;
+}
+
+#logo img{
+  width: 100%;
 }
 #current_time{
   margin-top: 10px;
 }
-  
+
 
 #status{
   position: relative;
@@ -76,7 +96,7 @@ html, body {
   font-size: 12pt;
   margin: 10px 0px 10px 0px;
   letter-spacing: 2px;
-  
+
   span{
     color: $control-blue2;
     background-color: #303F45;
@@ -86,15 +106,15 @@ html, body {
     padding: 3px 6px;
     margin-right: 5px;
   }
-  
+
 }
 .seperate {
   margin-top: -5px;
   width: 100%;
   opacity: 0.5;
   text-align: center;
-  
-  ::after{
+
+  :after{
 
     content: '';
     background-color: $control-color;
@@ -107,7 +127,7 @@ html, body {
 
   }
 
-  ::before{
+  :before{
 
     content: '';
     background-color: $control-color;
@@ -117,18 +137,15 @@ html, body {
     top: -2px;
     left: 0;
     position: absolute;
-
   }
-  
+
   .line{
-    
     display: inline-block;
     width: calc(100% - 20px);
     height: 1px;
     background-color: $control-color;
     margin-bottom: 2px;
     position :relative;
-  
   }
 }
 
@@ -136,20 +153,15 @@ html, body {
 
 }
 .box{
-  
   text-align: center;
-  
+
   .left {
     margin-top: 5px;
     display: inline-block;
     width: 40%;
     border: 1px solid $control-blue;
     vertical-align: top;
-    
-    img{
-      width: 100%;
-    }
-    
+    img{width: 100%;}
   }
   .right {
     margin-top: 5px;
@@ -222,7 +234,7 @@ html, body {
   width: 260px;
   position: absolute;
   bottom: 15px;
-  
+
   .button {
     display: block;
     width: 100%;
@@ -234,9 +246,14 @@ html, body {
 
 #viewport{
   position: fixed;
-  left: 280px;
   top: 0;
+  left: 280px;
   width: calc(100% - 280px);
-  min-width: calc(860px - 280px);
   height: 100%;
+  transition: left .5s ease-in, width .5s ease-in;
+}
+
+#control-bar.hidden + #viewport {
+  left: 0;
+  width: 100%;
 }

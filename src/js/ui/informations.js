@@ -1,6 +1,7 @@
 'use strict';
 
 var $ = require('../tools');
+var displayer = require('./displayer');
 
 var informations = {
 
@@ -9,8 +10,20 @@ var informations = {
 
   init: function() {
     this.displayTime();
+    this.setEvents();
   },
 
+  setEvents: function() {
+    var controlBar = $.byId('control-bar');
+    $.byId('hide').addEventListener('click', function() {
+      if (controlBar.classList.contains('hidden')) {
+        $.byId('control-bar').classList.remove('hidden');
+      }
+      else {
+        $.byId('control-bar').classList.add('hidden');
+      }
+    });
+  },
 
   displayTime: function(){
     var currentTime = $.byId('current_time');
