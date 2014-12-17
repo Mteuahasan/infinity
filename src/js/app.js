@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var elements = [{
     type: "elementary",
-    size: 1,
+    size: 10,
     m: 1,
     x: 0,
     y: 0,

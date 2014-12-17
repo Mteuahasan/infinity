@@ -84,19 +84,21 @@
     attribute vec3 colors;
     attribute float size;
 
-    varying vec3 vColor;  // 'varying' vars are passed to the fragment shader
+    varying vec4 vColor;  // 'varying' vars are passed to the fragment shader
 
     void main() {
       gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-      vColor = colors;   // pass the color to the fragment shader
+      vColor = vec4(colors,0.5);   // pass the color to the fragment shader
       gl_PointSize = size;
     }
   </script>
   <script id="fragShader" type="x-shader/x-fragment">
-    varying vec3 vColor;
+    varying vec4 vColor;
+    uniform sampler2D texture;
 
     void main() {
-      gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+      // gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+      gl_FragColor = vColor * texture2D(texture,gl_PointCoord);
     }
   </script>
 
