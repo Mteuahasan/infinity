@@ -21,98 +21,120 @@ N à générer<br/> avec 1 < N < 2000
     </form>
     
   </div>
-  <div id="control-bar">
-    <div id="header" class="box">
-      <div id="logo">
+  
+    <div id="loader">
+      <div id="particles-js"></div>
+      <div id="loader-content">
         <img class="logo" src="img/logo.png"/>
+        <span class="name">LIFE <span>SYSTEM</span> 2.0</span>
+        <div class="seperate sepLoad">
+            <span class="line"></span>
+        </div>
+        <p>Derrière la surface visible des chose, se trouve l'infini des possibilités</p>
+        <span class="synchro">Synchronisation en cours <span class="lodash">_</span></span>
+        <button class="btn-start">START</button>
       </div>
-      <div id="status">
-        <span class="online">ONLINE</span>
-        <span class="status">DATA STATUS</span>
+    </div>  
 
-        <div class="seperate">
-          <span class="line"></span>
-          <span class="line"></span>
+    <div id="control-bar">
+      <div class="hide" id="hide">&#8676;</div>
+        <div id="header" class="box">
+            <div id="logo">
+                <img src="img/logo.png"/>
+            </div>
+            <div id="status">
+                <span class="online">ONLINE</span>
+                <span class="status">DATA STATUS</span>
+
+                <div class="seperate">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+
+                <span id="current_time" class="time">00:00:00</span>
+                <span id="time" class="time">00:00:00</span>
+            </div>
+
+
+            <div id="name"><span>NAME:</span></soan>LIFESTYSTEM 2.0</div>
+
+
+        </div>
+        <div id="box1" class="box">
+            <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+            <div class="left"><img src="img/prisme.png"/></div>
+            <div class="right">
+              <div class="fiel">AVERRAGE SPEED</div>
+              <div class="value">193KM/H</div>
+              <div class="fiel">NUMBER OF ATOM</div>
+              <div class="value">1OO</div>
+
+              <input type="range" id="param-masse" pitch="1" max="2000" min="1" value="1000">
+            </div>
+
+            <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
         </div>
 
-        <span id="current_time" class="time">00:00:00</span>
-        <span id="time" class="time">00:00:00</span>
-      </div>
+        <div id="box2" class="box">
+          <div class="left"><img src="img/triangle.gif"/></div>
 
-      <div id="name"><span>NAME:</span>LIFESTYSTEM 2.0</div>
-    </div>
-    <div id="box1" class="box">
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-      <div class="left"><img src="img/prisme.png"/></div>
-      <div class="right">
-        <div class="fiel">AVERRAGE SPEED</div>
-        <div class="value">193KM/H</div>
-        <div class="fiel">NUMBER OF ATOM</div>
-        <div class="value">1OO</div>
+          <div class="right">
+              <div class="fiel">AVERRAGE SPEED</div>
+              <div class="value">193KM/H</div>
+              <div class="fiel">NUMBER OF ATOM</div>
+              <div class="value">1OO</div>
 
-          <input type="range" id="param-masse" pitch="1" max="2000" min="1" value="1000">
-      </div>
+              <input type="range" id="param-fusion" pitch="1" max="2000" min="1" value="1000">
 
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
+          </div>
+            <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+          </div>
+          <div id="box3">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div id="box4">
+              <div class="seperate">
+                <span class="line"></span>
+                <span class="line"></span>
+              </div>
+            <div class="button"><a href="">[ RESTART SYST. ]</a></div>
+          </div>
       </div>
-    </div>
-
-    <div id="box2" class="box">
-      <div class="left"><img src="img/triangle.gif" style="position:relative;top:2px;"/></div>
-
-      <div class="right">
-        <div class="fiel">AVERRAGE SPEED</div>
-        <div class="value">193KM/H</div>
-        <div class="fiel">NUMBER OF ATOM</div>
-        <div class="value">1OO</div>
-
-        <input type="range" id="param-fusion" pitch="1" max="2000" min="1" value="1000">
-
-      </div>
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <div id="box3">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-    <div id="box4">
-      <div class="seperate">
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-      <div class="button"><a href="">[ RESTART SYST. ]</a></div>
-    </div>
-  </div>
   <div id="viewport"></div>
 
   <script id="vertShader" type="x-shader/x-vertex">
     attribute vec3 colors;
     attribute float size;
 
-    varying vec3 vColor;  // 'varying' vars are passed to the fragment shader
+    varying vec4 vColor;  // 'varying' vars are passed to the fragment shader
 
     void main() {
       gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-      vColor = colors;   // pass the color to the fragment shader
+      vColor = vec4(colors,0.5);   // pass the color to the fragment shader
       gl_PointSize = size;
     }
   </script>
   <script id="fragShader" type="x-shader/x-fragment">
-    varying vec3 vColor;
+    varying vec4 vColor;
+    uniform sampler2D texture;
 
     void main() {
-      gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+      // gl_FragColor = vec4(vColor, 0.5);  // adjust the alpha
+      gl_FragColor = vColor * texture2D(texture,gl_PointCoord);
     }
   </script>
 
   <script src="src/js/libs/fps-meter.js"></script>
+  <script src="src/js/libs/particles.min.js" defer></script>
   <script src="build/js/app.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ var _     = require('lodash');
 
 var $      = require('../tools.js');
 var THREE  = require('../libs/orbit-control.js');
+var resize = require('../libs/resize.js');
 
 
 var displayer = {
@@ -26,11 +27,22 @@ var displayer = {
   pMaterial     : null,
   particleSystem: null,
 
+  canvas : null,
+  context: null,
+  texture: null,
+
   init: function(elements) {
     var self = this;
 
     self.container = document.querySelector('#viewport');
 
+    // Set up fps meter
+    self.meter = new FPSMeter({
+      theme  : 'dark',
+      heat   : true,
+      graph  : true,
+      history: 20
+    });
 
     /**
       * RENDER
@@ -60,17 +72,26 @@ var displayer = {
     self.controls.addEventListener('change', self.render);
 
 
+    // On Resize using the js/libs/resize.js
+    addResizeListener(self.container, self.onWindowResize);
 
-    // On Resize
-    window.addEventListener('resize', self.onWindowResize, false);
+    //Draw canvas
+    self.createCanvasTexture();
 
+    //Create texture
+    self.texture = new THREE.Texture(self.canvas);
+
+    self.texture.needsUpdate = true;
 
     /**
     * Set-particles
     */
     var uniforms = {
-      color: { type: "c", value: new THREE.Color(0xff00ff) },
+      color: { type: 'c', value: new THREE.Color(0xff00ff) },
+      texture: { type: 't', value: self.texture }
     };
+
+    console.log(uniforms);
 
     self.attributes = {
       size: { type: 'f', value: [] },
@@ -81,14 +102,17 @@ var displayer = {
       self.attributes.colors.value.push(new THREE.Color(0xcccccc));
       self.attributes.size.value.push(1);
     }
-    console.log(self.attributes);
 
     self.particles = new THREE.Geometry();
     self.pMaterial = new THREE.ShaderMaterial({
-     uniforms: uniforms,
-     attributes: self.attributes,
-     vertexShader: document.getElementById('vertShader').textContent,
-     fragmentShader: document.getElementById('fragShader').textContent
+      uniforms      : uniforms,
+      attributes    : self.attributes,
+      transparent   : true,
+      depthTest     : false,
+      depthWrite    : false,
+      blending      : "AdditiveBlending",
+      vertexShader  : document.getElementById('vertShader').textContent,
+      fragmentShader: document.getElementById('fragShader').textContent
     });
 
     self.particle = new THREE.Vector3(0, 0, 0);
@@ -102,13 +126,7 @@ var displayer = {
     /**
       * RAF main anim loop
     */
-    // Set up fps meter
-    self.meter = new FPSMeter({
-      theme  : 'dark',
-      heat   : true,
-      graph  : true,
-      history: 20
-    });
+
 
     (function animLoop() {
       self.render();
@@ -124,10 +142,12 @@ var displayer = {
     if (self.showHelpers) {
       self.scene.add(self.helper);
       self.scene.add(self.helperBis);
+      self.meter.show();
     }
     else {
       self.scene.remove(self.helper);
       self.scene.remove(self.helperBis);
+      self.meter.hide();
     }
   },
 
@@ -194,6 +214,29 @@ var displayer = {
     }
     self.particleSystem.geometry.verticesNeedUpdate = true;
     self.attributes.size.needsUpdate = true;
+  },
+
+  createCanvasTexture : function() {
+    var self = this;
+
+    self.canvas      = document.createElement( 'canvas' );
+    self.context     = self.canvas.getContext( '2d' );
+
+    self.canvas.width            = 50;
+    self.canvas.height           = 50;
+
+    var center = Math.round(50) * 0.5;
+
+    // Preview
+    //self.context.clearRect( 0, 0, 50, 50 );
+    self.context.fillStyle   = "#ff00ff";
+    self.context.shadowColor = "#ffff00";
+    self.context.shadowBlur  = Math.round( 25 * 0.4 );
+    self.context.beginPath();
+    self.context.arc( center, center, 25 * 0.4 * 0.5, 0, Math.PI * 2 );
+    self.context.fill();
+
+    document.body.appendChild(self.canvas);
   }
 };
 

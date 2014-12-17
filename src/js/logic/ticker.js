@@ -23,8 +23,6 @@ var ticker = {
       right:    '5px',     // Meter right offset.
       history: 20
     });
-
-    self.tick();
   },
 
   tick: function() {

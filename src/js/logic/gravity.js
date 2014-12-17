@@ -54,7 +54,7 @@ var gravity = {
           e1.vZ += deltaVel;
           e2.vZ += -deltaVel;
         }
-        else if (ticks>3) {
+        else if (ticks>5) {
           collider.computeAngle(e1, e2, f);
         }
       }
