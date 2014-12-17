@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <div id="popup-box" class="active">
+  <div id="popup-box" class="">
     <span class="popup-titre">Initialisation du nombre de particules <span class="blink">_</span>
     </span>
     <span class="etape1-descript">
@@ -16,7 +16,7 @@
 N à générer<br/> avec 1 < N < 2000
     </span>
     <form id="etape1-form">
-      <input type="number" class="etape1-field" placeholder="0000">
+      <input type="range" class="etape1-field" pitch="1" max="2000" min="1" value="1000">
       <input type="submit" class="etape1-submit" value="VALIDER">
     </form>
     
@@ -53,7 +53,7 @@ N à générer<br/> avec 1 < N < 2000
         <div class="fiel">NUMBER OF ATOM</div>
         <div class="value">1OO</div>
 
-        <div class="value-bar"></div>
+          <input type="range" id="param-masse" pitch="1" max="2000" min="1" value="1000">
       </div>
 
       <div class="seperate">
@@ -71,7 +71,7 @@ N à générer<br/> avec 1 < N < 2000
         <div class="fiel">NUMBER OF ATOM</div>
         <div class="value">1OO</div>
 
-        <div class="value-bar"></div>
+        <input type="range" id="param-fusion" pitch="1" max="2000" min="1" value="1000">
 
       </div>
       <div class="seperate">
