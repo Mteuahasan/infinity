@@ -52,8 +52,8 @@ var informations = {
     var date = new Date();
     informations.endDate = date;
 
-    var hh = date.getHours();
-    var mm = date.getMinutes();
+    var hh = date.getHours()<10?'0'+date.getHours():date.getHours();
+    var mm = date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes();
     var ss = date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds();
     return hh+':'+mm+':'+ss;
   },
