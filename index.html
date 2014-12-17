@@ -7,19 +7,21 @@
   <link rel="stylesheet" href="build/css/main.css">
 </head>
 <body>
-    <div id="popup-box" class="">
-      <span class="popup-titre">Initialisation du nombre de particules <span class="blink">_</span>
-      </span>
-      <span class="etape1-descript">
-        Veuillez définir le nombre de particules
-        N à générer<br/> avec 1 < N < 2000
-      </span>
-      <form id="etape1-form">
-        <input type="number" class="etape1-field" placeholder="0000">
-        <input type="submit" class="etape1-submit" value="VALIDER">
-      </form>
-    </div>
 
+  <div id="popup-box" class="">
+    <span class="popup-titre">Initialisation du nombre de particules <span class="blink">_</span>
+    </span>
+    <span class="etape1-descript">
+      Veuillez définir le nombre de particules 
+N à générer<br/> avec 1 < N < 2000
+    </span>
+    <form id="etape1-form">
+      <input type="range" class="etape1-field" pitch="1" max="2000" min="1" value="1000">
+      <input type="submit" class="etape1-submit" value="VALIDER">
+    </form>
+    
+  </div>
+  
     <div id="loader">
       <div id="particles-js"></div>
       <div id="loader-content">
@@ -32,7 +34,7 @@
         <span class="synchro">Synchronisation en cours <span class="lodash">_</span></span>
         <button class="btn-start">START</button>
       </div>
-    </div>
+    </div>  
 
     <div id="control-bar">
       <div class="hide" id="hide">&#8676;</div>
@@ -53,7 +55,9 @@
                 <span id="time" class="time">00:00:00</span>
             </div>
 
+
             <div id="name"><span>NAME:</span></soan>LIFESTYSTEM 2.0</div>
+
 
         </div>
         <div id="box1" class="box">
@@ -68,7 +72,7 @@
               <div class="fiel">NUMBER OF ATOM</div>
               <div class="value">1OO</div>
 
-              <div class="value-bar"></div>
+              <input type="range" id="param-masse" pitch="1" max="2000" min="1" value="1000">
             </div>
 
             <div class="seperate">
@@ -86,7 +90,7 @@
               <div class="fiel">NUMBER OF ATOM</div>
               <div class="value">1OO</div>
 
-              <div class="value-bar"></div>
+              <input type="range" id="param-fusion" pitch="1" max="2000" min="1" value="1000">
 
           </div>
             <div class="seperate">
@@ -102,7 +106,7 @@
                 <span class="line"></span>
                 <span class="line"></span>
               </div>
-            <div class="button">[ RESTART SYST. ]</div>
+            <div class="button"><a href="">[ RESTART SYST. ]</a></div>
           </div>
       </div>
   <div id="viewport"></div>
