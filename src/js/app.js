@@ -6,7 +6,8 @@ var _ = require('lodash');
 var universe = require('./logic/universe');
 var ticker   = require('./logic/ticker');
 
-var informations = require('./ui/informations')
+var informations = require('./ui/informations');
+var interactions = require('./ui/interactions');
 var displayer    = require('./ui/displayer');
 
 window.requestAnimFrame = (function() {
@@ -54,4 +55,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }];
   universe.init(elements);
   informations.init();
+  interactions.init();
 });
