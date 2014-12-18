@@ -42,20 +42,43 @@ var interactions = {
 
     button.addEventListener('click',function(e) {
       e.preventDefault();
+      button.removeEventListener('click');
 
       // RESET
       button.innerHTML="<a href=\"\">[ REDEMARRAGE SYST. ]</a>";
       button.removeEventListener('click');
       popupBox.classList.add('active');
-      steps[0].style.cssText="top:0px;";
+      steps[0].classList.add('active');
     },false);
 
+    var particules = 1;
+    $.byId('popup-particules-range').addEventListener('input',function() {
+      $.byId('popup-particules').innerHTML = this.value;
+      particules = this.value;
+    },false);
+    
+    var masse = 1;
+    $.byId('popup-masse-range').addEventListener('input',function() {
+      $.byId('popup-masse').innerHTML = this.value;
+      masse = this.value;
+    },false);
+    
+    var fusion = 1;
+    $.byId('popup-fusion-range').addEventListener('input',function() {
+      $.byId('popup-fusion').innerHTML = this.value;
+      fusion = this.value;
+    },false);
+    
+    
+    
+    
     forms[0].addEventListener('submit',function(e) {
       e.preventDefault();
 
       // SET STEP 1 PARAM
-      steps[0].style.cssText="top:101%;";
-      setTimeout(function() {steps[1].style.cssText="top:0;";},1000);
+      
+      steps[0].classList.remove('active');
+      setTimeout(function() {steps[1].classList.add('active');},1000);
       return;
     },false);
 
@@ -63,8 +86,8 @@ var interactions = {
       e.preventDefault();
 
       // SET STEP 2 PARAM
-      steps[1].style.cssText="top:101%;";
-      setTimeout(function() {steps[2].style.cssText="top:0;"},1000);
+      steps[1].classList.remove('active');
+      setTimeout(function() {steps[2].classList.add('active');},1000);
       return;
     },false);
 
@@ -73,12 +96,12 @@ var interactions = {
 
         // SET STEP 3 PARAM
         // Start
-        steps[2].style.cssText="top:101%;";
+        steps[2].classList.remove('active');
         popupBox.classList.remove('active');
         setTimeout(function() {
           // Pause
           popupBox.classList.add('active');
-          steps[3].style.cssText="top:0;";
+          steps[3].classList.add('active');
         },20000);
       return;
     },false);
@@ -86,8 +109,7 @@ var interactions = {
     $.byId('final-close').addEventListener('click',function(e) {
       e.preventDefault();
       popupBox.classList.remove('active');
-      steps[3].style.cssText="top:101%;";
-
+      steps[3].classList.remove('active');
       // Start
       return;
     },false);
