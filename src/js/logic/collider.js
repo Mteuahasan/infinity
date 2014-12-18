@@ -20,7 +20,7 @@ var collider = {
       self.bounce(e1, e2);
     }
     else {
-      if (e1.m === e2.m && f<10 && e1.m>1)
+      if (e1.m === e2.m && f<10 && e1.m>=1)
         self.merge(e1, e2);
       else {
         if (e1.children.length)
