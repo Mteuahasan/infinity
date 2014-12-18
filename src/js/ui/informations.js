@@ -34,9 +34,13 @@ var informations = {
       }
     });
     $.sel('.btn-start').addEventListener('click', this.hideLoader, false);
+    $.sel('.masse').addEventListener('click', this.showHideMasseInfo, false);
+    $.sel('.fusion').addEventListener('click', this.showHideFusionInfo, false);
+    $.sel('.infos_masse .close').addEventListener('click', this.showHideMasseInfo, false);
+    $.sel('.infos_fusion .close').addEventListener('click', this.showHideFusionInfo, false);
   },
 
-  displayTime: function(){
+  displayTime: function() {
     var currentTime = $.byId('current_time');
     var timeLaps = $.byId('time');
 
@@ -45,6 +49,24 @@ var informations = {
       var delta = informations.getDateDiff(informations.startDate,informations.endDate);
       timeLaps.innerHTML=delta.hour+':'+delta.min+':'+delta.sec;
     },1000);
+  },
+    
+  showHideMasseInfo : function() {
+    if($.sel('.infos_masse').classList.contains('hide')){
+        $.sel('.infos_masse').classList.remove("hide");
+        $.sel('.infos_fusion').classList.add("hide");
+    }else{
+        $.sel('.infos_masse').classList.add("hide");
+    }
+  },
+
+  showHideFusionInfo : function() {
+    if($.sel('.infos_fusion').classList.contains('hide')){
+        $.sel('.infos_fusion').classList.remove("hide");
+        $.sel('.infos_masse').classList.add("hide");
+    }else{
+        $.sel('.infos_fusion').classList.add("hide");
+    }
   },
 
   getTime : function(){
@@ -60,9 +82,6 @@ var informations = {
   getDateDiff : function(date1, date2){
     var diff = {}
     var tmp = date2 - date1;
-    
-    tmp = Math.floor(tmp/1000);
-    diff.sec = tmp % 60<10?'0'+tmp % 60:tmp % 60;
 
     tmp = Math.floor(tmp/1000);
     diff.sec = tmp % 60<10?'0'+tmp % 60:tmp % 60;

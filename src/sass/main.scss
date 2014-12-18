@@ -362,6 +362,76 @@ body {
   }
 }
 
+.infos{
+
+  position: absolute;
+  width: 700px;
+  height: 400px;
+  padding: 40px;
+  top: calc(50% - 220px);
+  left: calc(50% - 220px);
+  background: url('../../img/cross.png');
+  background-color: rgba(15, 15, 15, 0.8);
+  z-index: 10;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  overflow: hidden;
+    
+  &.hide{
+    display: none;
+  }
+    
+  img {
+    width: 215px;
+  }
+    
+  .titre {
+    font-size: 11pt;
+    text-transform: uppercase;
+
+    span:first-child{
+     color: #A3B8BD;
+     background-color: rgba(48, 63, 69, 0.49);
+     border-radius: 4px;
+     font-weight: bold;
+     padding: 3px 6px;
+     margin-right: 5px;
+    }
+
+  }
+    
+  .close{
+    position: absolute;
+    font-weight: 100;
+    top: 20px;
+    right: 20px;
+    transition: all 0.5s;
+  }
+  
+  .close:hover{
+    transform: rotate(180deg);
+    cursor: pointer;
+  }
+    
+  .description {
+    display: block;
+    width: 100%;
+    font-weight: 100;
+    font-size: 11pt;
+    margin-top: 35px;
+    text-align: center;
+    line-height: 22px;
+  }
+  .nombre {
+    text-align: center;
+    display: block;
+    font-weight: 300;
+    margin-top: 30px;
+  }
+  
+    
+}
+
 
 .form {
   margin-top: 20px;
@@ -443,11 +513,22 @@ input[type='range']::-moz-range-thumb {
   font-size: 10pt;
   font-weight: 100;
   height: calc(100% - 650px);
-  p {
-    height:100%;
-    overflow-y: scroll;
-    margin: 0;
-    padding: 0 10px;
+
+  .crochet{
+    transition: all 0.5s;
+    margin: 0 5px;
+  }
+    
+  .link:hover .crochet{
+    margin: 0px;
+  }
+    
+  .link{
+    text-align: center;
+    font-size: 12pt;
+    display: block;
+    cursor: pointer;
+    margin-bottom: 10px;
   }
 }
 #box4 {
