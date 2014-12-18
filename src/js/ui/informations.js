@@ -10,7 +10,7 @@ var informations = {
     this.displayTime();
     this.setEvents();
     this.particle();
-    this.hideLoader();
+    //this.hideLoader();
   },
 
   hideLoader : function(){

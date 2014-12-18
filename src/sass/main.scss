@@ -12,10 +12,6 @@ html, body {
 body {
   background-color: #000;
 }
-::-webkit-inner-spin-button { -webkit-appearance: none;}
-::-webkit-outer-spin-button { -webkit-appearance: none;}
-
-
 
 #loader {
   position: absolute;
@@ -312,7 +308,7 @@ body {
   background-color: rgba(15, 15, 15, 0.8);
   z-index: 1;
   opacity: 0;
-  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
   transition: all 1s ease;
   overflow: hidden;
 
@@ -343,7 +339,7 @@ body {
     height: 100%;
     box-sizing: border-box;
     padding: 20px;
-    -webkit-transition:top 1s ease;
+    transition:top 1s ease;
     transition:top 1s ease;
 
     .description {
@@ -465,12 +461,16 @@ input[type='range']::-moz-range-thumb {
     text-align: center;
     padding-top: 5px;
     font-size: 20px;
+    &.hide{
+      display: none;
+    }
     a {
       color:$control-white;
       text-decoration: none;
     }
   }
 }
+
 
 #viewport {
   position: fixed;
@@ -486,13 +486,13 @@ input[type='range']::-moz-range-thumb {
   width: 100%;
 }
 
-@-webkit-keyframes clignote {
+@keyframes clignote {
   0%{opacity:0}
   50%{opacity:1}
   100%{opacity:0}
 }
 .lodash {
-  -webkit-animation-name: clignote; //on affecte l'animation clignote à notre bouton
-  -webkit-animation-duration: 1.5s; //on définit la durée de l'animation à 1s
-  -webkit-animation-iteration-count:infinite;
+  animation-name: clignote; //on affecte l'animation clignote à notre bouton
+  animation-duration: 1.5s; //on définit la durée de l'animation à 1s
+  animation-iteration-count:infinite;
 }

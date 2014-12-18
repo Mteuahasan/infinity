@@ -34,7 +34,7 @@ var interactions = {
   },
 
 
-  startSystem:function() {
+  startSystem: function() {
     var button = $.byId('button-syst');
     var steps = document.querySelectorAll('.step');
     var forms = document.querySelectorAll('#popup-box form');
@@ -42,7 +42,9 @@ var interactions = {
 
     button.addEventListener('click',function(e) {
       e.preventDefault();
-      button.removeEventListener('click');
+      button.classList.add('hide');
+      if ($.sel('.step.active'))
+        $.sel('.step.active').classList.remove('active');
 
       // RESET
       button.innerHTML="<a href=\"\">[ REDEMARRAGE SYST. ]</a>";
@@ -98,7 +100,10 @@ var interactions = {
         // Start
         steps[2].classList.remove('active');
         popupBox.classList.remove('active');
+        button.classList.remove('hide');
         setTimeout(function() {
+          if ($.sel('.step.active'))
+            $.sel('.step.active').classList.remove('active');
           // Pause
           popupBox.classList.add('active');
           steps[3].classList.add('active');
@@ -110,6 +115,7 @@ var interactions = {
       e.preventDefault();
       popupBox.classList.remove('active');
       steps[3].classList.remove('active');
+
       // Start
       return;
     },false);
