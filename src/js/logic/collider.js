@@ -1,8 +1,8 @@
 'use strict';
 
 var collider = {
-  minBounceAngle: 179,
-  maxBounceAngle: 181,
+  minBounceAngle: 175,
+  maxBounceAngle: 185,
 
   computeAngle: function(e1, e2, f) {
     var self = this;
@@ -43,13 +43,13 @@ var collider = {
     e2.vY = -((e2.vY * deltaM) + (2 * e1.m * e1.vY)) / sumM;
     e2.vZ = -((e2.vZ * deltaM) + (2 * e1.m * e1.vZ)) / sumM;
 
-    e1.x += e1.vX*4;
-    e1.y += e1.vY*4;
-    e1.Z += e1.vZ*4;
+    e1.x += e1.vX;
+    e1.y += e1.vY;
+    e1.Z += e1.vZ;
 
-    e2.x += e2.vX*4;
-    e2.y += e2.vY*4;
-    e2.Z += e2.vZ*4;
+    e2.x += e2.vX;
+    e2.y += e2.vY;
+    e2.Z += e2.vZ;
   },
 
   merge: function(e1, e2) {
@@ -94,31 +94,26 @@ var collider = {
       e.children[i].z = e.z;
 
       // Velocities
-      e.children[i].vX = detlaVX*(Math.random()-.5)*2;
-      e.children[i].vY = detlaVY*(Math.random()-.5)*2;
-      e.children[i].vZ = detlaVZ*(Math.random()-.5)*2;
+      e.children[i].vX = detlaVX;
+      e.children[i].vY = detlaVY;
+      e.children[i].vZ = detlaVZ;
 
       // Positions
-      e.children[i].x += e.children[i].vX*10;
-      e.children[i].y += e.children[i].vY*10;
-      e.children[i].z += e.children[i].vZ*10;
+      e.children[i].x += e.children[i].vX;
+      e.children[i].y += e.children[i].vY;
+      e.children[i].z += e.children[i].vZ;
     }
 
     // Update parent elements
-    console.log('______');
-    console.log(e.m);
-    e.m = deltaM;
-    console.log(e.m);
-    console.log('______');
     e.size = deltaS;
 
     e.vX = detlaVX;
     e.vY = detlaVY;
     e.vZ = detlaVZ;
 
-    e.x += e.vX*10;
-    e.y += e.vY*10;
-    e.z += e.vZ*10;
+    e.x += e.vX;
+    e.y += e.vY;
+    e.z += e.vZ;
     e.children = [];
   }
 };
