@@ -1,6 +1,8 @@
 'use strict';
 
 var collider = {
+  maxMergeForce: 10,
+
   computeAngle: function(e1, e2, f) {
     var angle = 0;
 
@@ -16,7 +18,7 @@ var collider = {
       this.bounce(e1, e2);
     }
     else {
-      if (f<10)
+      if (f<1000)
         this.merge(e1, e2);
       else {
         if (e1.children)
