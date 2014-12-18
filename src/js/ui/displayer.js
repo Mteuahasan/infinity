@@ -53,7 +53,7 @@ var displayer = {
 
 
     //Setting up the camera
-    self.camera = new THREE.PerspectiveCamera(55, self.container.offsetWidth / self.container.offsetHeight, 2, 100000000);
+    self.camera = new THREE.PerspectiveCamera(55, self.container.offsetWidth / self.container.offsetHeight, 1, 100000000);
     self.camera.position.z = 1000;
     self.camera.position.y = 1000;
 
@@ -90,8 +90,6 @@ var displayer = {
       color: { type: 'c', value: new THREE.Color(0xff00ff) },
       texture: { type: 't', value: self.texture }
     };
-
-    console.log(uniforms);
 
     self.attributes = {
       size: { type: 'f', value: [] },
@@ -204,7 +202,7 @@ var displayer = {
 
 
   // Called at every ticks to move the elements
-  updatePosition: function(elements) {
+  updatePositions: function(elements) {
     var self = this;
     for (var i=0; i<elements.length; i++) {
       self.attributes.size.value[i] = elements[i].size;
@@ -219,21 +217,21 @@ var displayer = {
   createCanvasTexture : function() {
     var self = this;
 
-    self.canvas      = document.createElement( 'canvas' );
-    self.context     = self.canvas.getContext( '2d' );
+    self.canvas  = document.createElement('canvas');
+    self.context = self.canvas.getContext('2d');
 
-    self.canvas.width            = 50;
-    self.canvas.height           = 50;
+    self.canvas.width  = 500;
+    self.canvas.height = self.canvas.width;
 
-    var center = Math.round(50) * 0.5;
+    var center = Math.round(self.canvas.width) * 0.5;
 
     // Preview
-    //self.context.clearRect( 0, 0, 50, 50 );
-    self.context.fillStyle   = "#ff00ff";
+    //self.context.clearRect(0, 0, 50, 50);
+    self.context.fillStyle   = "#fff";
     self.context.shadowColor = "#ffff00";
-    self.context.shadowBlur  = Math.round( 25 * 0.4 );
+    self.context.shadowBlur  = Math.round((self.canvas.width) * 0.1);
     self.context.beginPath();
-    self.context.arc( center, center, 25 * 0.4 * 0.5, 0, Math.PI * 2 );
+    self.context.arc(center, center, self.canvas.width * 0.1 * 0.5, 0, Math.PI * 2);
     self.context.fill();
 
     document.body.appendChild(self.canvas);

@@ -10,7 +10,7 @@ var informations = {
     this.displayTime();
     this.setEvents();
     this.particle();
-
+    this.hideLoader();
   },
 
   hideLoader : function(){
@@ -33,7 +33,7 @@ var informations = {
         $.byId('control-bar').classList.add('hidden');
       }
     });
-    $.sel('.btn-start').addEventListener('click', informations.hideLoader, false);
+    $.sel('.btn-start').addEventListener('click', this.hideLoader, false);
   },
 
   displayTime: function(){
@@ -46,7 +46,6 @@ var informations = {
       timeLaps.innerHTML=delta.hour+':'+delta.min+':'+delta.sec;
     },1000);
   },
-
 
   getTime : function(){
     var date = new Date();
@@ -77,8 +76,10 @@ var informations = {
     return diff;
   },
 
+  updateSpeed: function(speed) {
+  },
 
-  particle : function(){
+  particle: function(){
 
     particlesJS('particles-js', {
       particles: {

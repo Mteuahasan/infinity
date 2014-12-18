@@ -1,7 +1,8 @@
 'use strict';
 
-var universe  = require('./universe');
-var displayer = require('../ui/displayer');
+var universe     = require('./universe');
+var displayer    = require('../ui/displayer');
+var informations = require('../ui/informations');
 
 var gravity   = require('./gravity');
 
@@ -27,8 +28,10 @@ var ticker = {
 
   tick: function() {
     var self = this;
-    var elements = gravity.computeVelocity(0, universe.elements, ticker.ticks)
-    displayer.updatePosition(elements);
+    var data = gravity.computeVelocity(0, universe.elements, ticker.ticks);
+
+    displayer.updatePositions(data.elements);
+    informations.updateSpeed(data.speed);
 
     ticker.ticks++;
     ticker.meter.tick();
