@@ -136,9 +136,6 @@ body {
 #logo img {
   width: 100%;
 }
-#current_time {
-  margin-top: 10px;
-}
 
 
 #status{
@@ -175,12 +172,18 @@ body {
   display: block;
   text-align: center;
   width: 100%;
-  color: $control-blue3;
+  font-weight: 100;
+  color: white;
   font-size: 12pt;
   margin: 10px 0px 10px 0px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+    
+  :nth-child(2){
+    font-weight: normal;
+  }
 
-  span {
+  span:first-child {
+    letter-spacing: normal;
     color: $control-blue2;
     background-color: #303F45;
     border-radius: 4px;
@@ -192,14 +195,19 @@ body {
 
 }
 .seperate {
-  margin-top: -5px;
   width: 100%;
+  height: 35px;
   opacity: 0.5;
   text-align: center;
 
   &.w200{
       width: 200px;
       margin: 10px auto;
+  }
+    
+  :nth-child(2){
+    opacity: 0.4;
+    margin-top: -15px;
   }
 
   :after {
@@ -243,6 +251,11 @@ body {
 }
 .box{
   text-align: center;
+    
+  .seperate{
+    margin-bottom: 10px;
+    margin: 5px 0px 10px 0px;
+  }
 
   .left {
     margin-top: 5px;
@@ -250,7 +263,10 @@ body {
     width: 40%;
     border: 1px solid $control-blue;
     vertical-align: top;
-    img{width: 100%;}
+    img{
+      width: 100%;
+      margin-bottom: -4px;
+    }
   }
   .right {
     margin-top: 5px;
@@ -278,9 +294,6 @@ body {
       height: 10px;
       width: 100%;
       background-color: $control-brown;
-    }
-    .seperate {
-      margin: 5px 0px 10px 0px;
     }
   }
 }
@@ -410,7 +423,7 @@ input[type='range']::-webkit-slider-thumb {
   width:3px;
   height:20px;
   position:relative;
-  background: $control-color;
+  background: #93713C;
   z-index:3;
   cursor: pointer;
 }
@@ -419,7 +432,7 @@ input[type='range']::-moz-range-thumb {
   width:3px;
   height:20px;
   position:relative;
-  background: $control-color;
+  background: #93713C;
   z-index:3;
   cursor: pointer;
 }
@@ -429,11 +442,11 @@ input[type='range']::-moz-range-thumb {
   text-align: justify;
   font-size: 10pt;
   font-weight: 100;
-  height: calc(100% - 635px);
+  height: 75px;
   p {
-    box-sizing: border-box;
     height:100%;
     overflow-y: scroll;
+    margin: 0;
     padding: 0 10px;
   }
 }
