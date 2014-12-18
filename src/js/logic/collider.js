@@ -20,7 +20,7 @@ var collider = {
       self.bounce(e1, e2);
     }
     else {
-      if (e1.m === e2.m && f<10 && e1.m <500)
+      if (e1.m === e2.m && f<10 && e1.m>1)
         self.merge(e1, e2);
       else {
         if (e1.children.length)
@@ -77,11 +77,11 @@ var collider = {
   },
 
   splitChildren: function(e) {
-    var detlaVX = e.vX/e.children.length;
-    var detlaVY = e.vY/e.children.length;
-    var detlaVZ = e.vZ/e.children.length;
-    var deltaM  = e.m /e.children.length;
-    var deltaS  = e.size/e.children.length;
+    var detlaVX = e.vX/(e.children.length*2);
+    var detlaVY = e.vY/(e.children.length*2);
+    var detlaVZ = e.vZ/(e.children.length*2);
+    var deltaM  = e.m /(e.children.length*2);
+    var deltaS  = e.size/(e.children.length*2);
 
     // update children
     for (var i=0; i<e.children.length;i++) {
@@ -94,9 +94,9 @@ var collider = {
       e.children[i].z = e.z;
 
       // Velocities
-      e.children[i].vX = detlaVX*(Math.random()-.5)*2* (Math.round(Math.random()) == 1 ? 1 : -1);
-      e.children[i].vY = detlaVY*(Math.random()-.5)*2* (Math.round(Math.random()) == 1 ? 1 : -1);
-      e.children[i].vZ = detlaVZ*(Math.random()-.5)*2* (Math.round(Math.random()) == 1 ? 1 : -1);
+      e.children[i].vX = detlaVX*(Math.random()-.5)*2;
+      e.children[i].vY = detlaVY*(Math.random()-.5)*2;
+      e.children[i].vZ = detlaVZ*(Math.random()-.5)*2;
 
       // Positions
       e.children[i].x += e.children[i].vX*10;
@@ -105,7 +105,11 @@ var collider = {
     }
 
     // Update parent elements
+    console.log('______');
+    console.log(e.m);
     e.m = deltaM;
+    console.log(e.m);
+    console.log('______');
     e.size = deltaS;
 
     e.vX = detlaVX;
