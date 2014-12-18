@@ -75,12 +75,6 @@ body {
       font-size: 10pt;
       font-weight: 300;
       text-transform: uppercase;
-
-      .lodash {
-        -webkit-animation-name: clignote; //on affecte l'animation clignote à notre bouton
-        -webkit-animation-duration: 1s; //on définit la durée de l'animation à 1s
-        -webkit-animation-iteration-count:infinite;
-      }
     }
 
     .btn-start {
@@ -434,4 +428,9 @@ input[type='range']::-moz-range-thumb {
   0%{opacity:0}
   50%{opacity:1}
   100%{opacity:0}
+}
+.lodash {
+  -webkit-animation-name: clignote; //on affecte l'animation clignote à notre bouton
+  -webkit-animation-duration: 1.5s; //on définit la durée de l'animation à 1s
+  -webkit-animation-iteration-count:infinite;
 }
