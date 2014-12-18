@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var elements = [{
     type: "elementary",
-    size: 1,
+    size: 2,
     m: 1,
     x: 0,
     y: 0,
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     speed: 0,
     children: []
   }];
+
   universe.init(elements);
   informations.init();
   interactions.init();

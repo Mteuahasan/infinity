@@ -12,7 +12,7 @@ var collider = {
 
     angle = Math.acos(angle) * (180/Math.PI);
 
-    if ((angle<178 || angle>182) && f<4) {
+    if ((angle<177 || angle>183) && f<4) {
       this.bounce(e1, e2);
     }
     else {

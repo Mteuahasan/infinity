@@ -2,34 +2,37 @@
 
 var $ = require('../tools');
 
+var gravity = require('../logic/gravity');
+var collider = require('../logic/collider');
+
 var interactions = {
-  init:function(){
+  init:function() {
     interactions.masseInteraction();
     interactions.fusionInteraction();
   },
-  masseInteraction:function(){
-    var masseField = $.byId('value-masse');
-    $.byId('param-masse').addEventListener('change',function(){
-      masseField.innerHTML = this.value;
-      console.log(this.value); // Call changeMasse
-    },false); 
+
+  masseInteraction:function() {
+    var massField = $.byId('value-mass');
+    $.byId('param-mass').addEventListener('input',function() {
+      massField.innerHTML = this.value;
+      gravity.massCoef = this.value/gravity.massCoef;
+      gravity.massNeedUpdate = true;
+    },false);
   },
-  fusionInteraction:function(){
+
+  fusionInteraction:function() {
     var fusionField = $.byId('value-fusion');
-    $.byId('param-fusion').addEventListener('change',function(){
+    $.byId('param-fusion').addEventListener('change',function() {
       fusionField.innerHTML = this.value;
-      console.log(this.value); // Call changeFusion
-    },false); 
+      // Call changeFusion
+      console.log(this.value);
+    },false);
   },
-  changeMasse:function(masse){
+
+  changeFusion:function(fusion) {
     for (var i=0; i < elements.length; i++) {
-      // Apply masse value 
+      // Apply fusion rate
     }
-  },
-  changeFusion:function(fusion){
-    for (var i=0; i < elements.length; i++) {
-      // Apply fusion rate 
-    }  
   }
 };
 
