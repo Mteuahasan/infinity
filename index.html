@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="build/css/main.css">
 </head>
 <body>
-
+  
   <div id="popup-box" class="">
     <div class="step1 step">
       <span class="popup-titre"><span>Information :</span>Initialisation du nombre de particules <span class="lodash">_</span></span>
@@ -60,9 +60,6 @@
         <input type="submit" class="submit" value="VALIDER">
       </form>
     </div>
-
-
-
     <div class="final step">
       <span class="popup-titre"><span>Information :</span>FINAL <span class="lodash">_</span></span>
       <div class="seperate w200">
@@ -77,6 +74,36 @@
         <input type="submit" id="final-close" value="FERMER">
       </form>
     </div>
+  </div>
+  
+  <div class="infos_masse infos hide">
+    <span class="close">&times;</span>
+    <span class="titre"><span>Information :</span>La masse d'une particule<span class="lodash">_</span></span>
+    <div class="seperate w200">
+      <span class="line"></span>
+    </div>
+    <span class="description">
+      La masse est un facteur influant directement sur l'attraction gravitationnelle. Cette loi découverte par Isaac Newton d'écrit la gravitation comme une force responsable de la chute dans le référenciek terrestre et du mouvement des corps celestes dans un référenciel plus large (étoiles, planêtes, satellites, galaxies).<br><br>
+      La loi est expérimée de la manière suivante<br><br>
+      <img src="img/masse.png" alt=""><br><br>
+        M<sub>A</sub> et M<sub>B</sub> étant les masses des deux corps, d la distance entre eux et G la constante gravitationnelle.<br><br>
+      L'attraction gravitationnelle est donc directement liée à la masse des corps.
+    </span>
+  </div>
+
+  <div class="infos_fusion infos hide">
+    <span class="close">&times;</span>
+    <span class="titre"><span>Information :</span>La fusion de particules<span class="lodash">_</span></span>
+    <div class="seperate w200">
+      <span class="line"></span>
+    </div>
+    <span class="description">
+      Les intéractions entre les particules sont de trois types ici. Elles sont toujours le résultat de collisions entre les corps.<br><br>
+      Fusion : deux corps étant en contact et ayant la même masse ont une chance de fusionner pour former un seul élément de taille plus importante et de masse égale à la somme des masses des deux élements fusionnés.<br><br>
+      Séparation : deux corps de masse différente entrant en contact vont avoir pour effet de séparer l'élément le moins massif en plusieurs corps de masse et de taille inférieure.<br><br>
+      Rebond : deux corps, quelque soient leur masse vont rebondir si l'angle de collision n'est pas plat ou presque, empechant alors la fusion et la séparation.<br><br>
+      Ces différentes intéractions paramètrales vont alors avoir un impact sur le déroulement de la simulation.
+    </span>
   </div>
 
     <div id="loader">
@@ -152,8 +179,8 @@
             </div>
           </div>
           <div id="box3">
-            <p>Augmentez le nombre de particules pour un générer un univers plus vaste.<br/>
-              <em>Info système : Si les performances du système diminuent, préférez un nombre plus modéré <span class="lodash">_</span></em></p>
+            <a class="link masse"><span class="crochet">[</span> Informations sur la masse <span class="crochet">]</span></a>
+            <a class="link fusion"><span class="crochet">[</span> Informations sur la fusion <span class="crochet">]</span></a>
           </div>
           <div id="box4">
               <div class="seperate">

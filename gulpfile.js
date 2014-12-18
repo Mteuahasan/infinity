@@ -4,6 +4,7 @@ var workerify  = require ('workerify');
 var livereload = require('gulp-livereload');
 var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('watch', function() {
   gulp.watch('src/js/**/*.js', ['js']);
@@ -17,6 +18,10 @@ gulp.task('sass', function () {
     .pipe(sourcemaps.init())
       .pipe(sass())
     .pipe(sourcemaps.write())
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
     .pipe(gulp.dest('./build/css'))
     .pipe(livereload());
 });

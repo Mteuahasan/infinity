@@ -6,11 +6,15 @@ var informations = {
   startDate : new Date(),
   endDate : '',
 
+  $averageSpeed: $.byId('average-speed'),
+  $infosMass   : $.sel('.infos_masse'),
+  $infosFusion : $.sel('.infos_fusion'),
+
   init: function() {
     this.displayTime();
     this.setEvents();
     this.particle();
-    this.hideLoader();
+    //this.hideLoader();
   },
 
   hideLoader : function(){
@@ -34,9 +38,13 @@ var informations = {
       }
     });
     $.sel('.btn-start').addEventListener('click', this.hideLoader, false);
+    $.sel('.masse').addEventListener('click', this.showHideMasseInfo, false);
+    $.sel('.fusion').addEventListener('click', this.showHideFusionInfo, false);
+    $.sel('.infos_masse .close').addEventListener('click', this.showHideMasseInfo, false);
+    $.sel('.infos_fusion .close').addEventListener('click', this.showHideFusionInfo, false);
   },
 
-  displayTime: function(){
+  displayTime: function() {
     var currentTime = $.byId('current_time');
     var timeLaps = $.byId('time');
 
@@ -45,6 +53,24 @@ var informations = {
       var delta = informations.getDateDiff(informations.startDate,informations.endDate);
       timeLaps.innerHTML=delta.hour+':'+delta.min+':'+delta.sec;
     },1000);
+  },
+
+  showHideMasseInfo : function() {
+    if(informations.$infosMass.classList.contains('hide')) {
+        informations.$infosMass.classList.remove("hide");
+        informations.$infosFusion.classList.add("hide");
+    }else{
+        informations.$infosMass.classList.add("hide");
+    }
+  },
+
+  showHideFusionInfo : function() {
+    if(informations.$infosFusion.classList.contains('hide')) {
+        informations.$infosFusion.classList.remove("hide");
+        informations.$infosMass.classList.add("hide");
+    }else{
+        informations.$infosFusion.classList.add("hide");
+    }
   },
 
   getTime : function(){
@@ -64,9 +90,6 @@ var informations = {
     tmp = Math.floor(tmp/1000);
     diff.sec = tmp % 60<10?'0'+tmp % 60:tmp % 60;
 
-    tmp = Math.floor(tmp/1000);
-    diff.sec = tmp % 60<10?'0'+tmp % 60:tmp % 60;
-
     tmp = Math.floor((tmp-diff.sec)/60);
     diff.min = tmp % 60<10?'0'+tmp % 60:tmp % 60;
 
@@ -80,7 +103,7 @@ var informations = {
   },
 
   updateSpeed: function(speed) {
-    $.byId('average-speed').innerHTML = speed.toFixed(4);
+    this.$averageSpeed.innerHTML = speed.toFixed(4);
   },
 
   particle: function(){
