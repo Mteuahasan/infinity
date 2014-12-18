@@ -60,6 +60,9 @@ var informations = {
   getDateDiff : function(date1, date2){
     var diff = {}
     var tmp = date2 - date1;
+    
+    tmp = Math.floor(tmp/1000);
+    diff.sec = tmp % 60<10?'0'+tmp % 60:tmp % 60;
 
     tmp = Math.floor(tmp/1000);
     diff.sec = tmp % 60<10?'0'+tmp % 60:tmp % 60;

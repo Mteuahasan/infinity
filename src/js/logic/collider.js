@@ -77,7 +77,6 @@ var collider = {
   },
 
   splitChildren: function(e) {
-    console.log('split');
     var detlaVX = e.vX/e.children.length;
     var detlaVY = e.vY/e.children.length;
     var detlaVZ = e.vZ/e.children.length;
