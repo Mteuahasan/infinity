@@ -43,6 +43,9 @@ var interactions = {
     
     button.addEventListener('click',function(e){ // Click on REDEMARRAGE
       e.preventDefault();
+      
+      // RESET
+      
       button.innerHTML="<a href=\"\">[ REDEMARRAGE SYST. ]</a>";
       button.removeEventListener('click');
       popupBox.classList.add('active');
@@ -51,7 +54,9 @@ var interactions = {
     
     forms[0].addEventListener('submit',function(e){
       e.preventDefault();
+      
       // SET ETAPE 1 PARAM
+      
       etapes[0].style.cssText="top:101%;";
       setTimeout(function(){etapes[1].style.cssText="top:0;";},1000);
       return;
@@ -59,7 +64,9 @@ var interactions = {
     
     forms[1].addEventListener('submit',function(e){
       e.preventDefault();
-      // SET ETAPE 3 PARAM
+      
+      // SET ETAPE 2 PARAM
+      
       etapes[1].style.cssText="top:101%;";
       setTimeout(function(){etapes[2].style.cssText="top:0;"},1000);
       return;
@@ -67,11 +74,33 @@ var interactions = {
     
     forms[2].addEventListener('submit',function(e){
       e.preventDefault();
+      
         // SET ETAPE 3 PARAM
+      
+        // DEMARRER 
+      
         etapes[2].style.cssText="top:101%;";
         popupBox.classList.remove('active');
+        setTimeout(function(){
+          
+          // METTRE EN PAUSE
+          
+          popupBox.classList.add('active');
+          etapes[3].style.cssText="top:0;";
+        },20000);
       return;
     },false);
+    
+    $.byId('final-close').addEventListener('click',function(e){
+      e.preventDefault();
+      popupBox.classList.remove('active');
+      etapes[3].style.cssText="top:101%;";
+      
+      // METTRE EN PLAY 
+      
+      return;
+    },false);
+      
     
   }
   
