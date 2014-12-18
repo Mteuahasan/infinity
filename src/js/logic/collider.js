@@ -20,7 +20,7 @@ var collider = {
       self.bounce(e1, e2);
     }
     else {
-      if (e1.m === e2.m)
+      if (e1.m === e2.m && f<10 && e1.m <500)
         self.merge(e1, e2);
       else {
         if (e1.children.length)
@@ -43,13 +43,13 @@ var collider = {
     e2.vY = -((e2.vY * deltaM) + (2 * e1.m * e1.vY)) / sumM;
     e2.vZ = -((e2.vZ * deltaM) + (2 * e1.m * e1.vZ)) / sumM;
 
-    e1.x += e1.vX*2;
-    e1.y += e1.vY*2;
-    e1.Z += e1.vZ*2;
+    e1.x += e1.vX*4;
+    e1.y += e1.vY*4;
+    e1.Z += e1.vZ*4;
 
-    e2.x += e2.vX*2;
-    e2.y += e2.vY*2;
-    e2.Z += e2.vZ*2;
+    e2.x += e2.vX*4;
+    e2.y += e2.vY*4;
+    e2.Z += e2.vZ*4;
   },
 
   merge: function(e1, e2) {
@@ -94,18 +94,14 @@ var collider = {
       e.children[i].z = e.z;
 
       // Velocities
-      e.children[i].vX = detlaVX;
-      e.children[i].vY = detlaVY;
-      e.children[i].vZ = detlaVZ;
+      e.children[i].vX = detlaVX*(Math.random()-.5)*2* (Math.round(Math.random()) == 1 ? 1 : -1);
+      e.children[i].vY = detlaVY*(Math.random()-.5)*2* (Math.round(Math.random()) == 1 ? 1 : -1);
+      e.children[i].vZ = detlaVZ*(Math.random()-.5)*2* (Math.round(Math.random()) == 1 ? 1 : -1);
 
       // Positions
-      e.children[i].x += e.children[i].vX;
-      e.children[i].y += e.children[i].vY;
-      e.children[i].z += e.children[i].vZ;
-
-      if (e.children[i].children.length) {
-        collider.splitChildren(e.children[i]);
-      }
+      e.children[i].x += e.children[i].vX*10;
+      e.children[i].y += e.children[i].vY*10;
+      e.children[i].z += e.children[i].vZ*10;
     }
 
     // Update parent elements
@@ -116,9 +112,9 @@ var collider = {
     e.vY = detlaVY;
     e.vZ = detlaVZ;
 
-    e.x += e.vX;
-    e.y += e.vY;
-    e.z += e.vZ;
+    e.x += e.vX*10;
+    e.y += e.vY*10;
+    e.z += e.vZ*10;
     e.children = [];
   }
 };
