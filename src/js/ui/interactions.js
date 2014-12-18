@@ -15,6 +15,7 @@ var interactions = {
     var massField = $.byId('value-mass');
     $.byId('param-mass').addEventListener('input',function() {
       massField.innerHTML = this.value;
+      // Tell gravity to update masses of all particles
       gravity.massCoef = this.value/gravity.massCoef;
       gravity.massNeedUpdate = true;
     },false);
@@ -22,17 +23,12 @@ var interactions = {
 
   fusionInteraction:function() {
     var fusionField = $.byId('value-fusion');
-    $.byId('param-fusion').addEventListener('change',function() {
+    $.byId('param-fusion').addEventListener('input',function() {
       fusionField.innerHTML = this.value;
-      // Call changeFusion
-      console.log(this.value);
+      // Update the collider
+      collider.minBounceAngle = 177 - this.value;
+      collider.maxBounceAngle = 183 + this.value;
     },false);
-  },
-
-  changeFusion:function(fusion) {
-    for (var i=0; i < elements.length; i++) {
-      // Apply fusion rate
-    }
   }
 };
 

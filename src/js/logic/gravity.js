@@ -9,7 +9,7 @@ var collider = require('./collider');
 */
 var gravity = {
   // G is multiply by a coefficient to control speed.
-  G: 6.67384*Math.pow(10, -11)*Math.pow(10, 8),
+  G: 6.67384*Math.pow(10, -11)*Math.pow(10, 5),
 
   // mass operation
   massNeedUpdate: false,
@@ -40,6 +40,9 @@ var gravity = {
       e1.z += e1.vZ;
       return {elements: elements, speed: average};
     };
+
+
+    // Compute the gravity between e1 and all the other elements
     var e2, d, f, deltaVel;
     if (e1.m) {
       for (var i=index+1;i<elements.length;i++) {

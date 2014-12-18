@@ -1,9 +1,11 @@
 'use strict';
 
 var collider = {
-  maxMergeForce: 10,
+  minBounceAngle: 179,
+  maxBounceAngle: 181,
 
   computeAngle: function(e1, e2, f) {
+    var self = this;
     var angle = 0;
 
     // Some operations have been compacted for performances
@@ -14,17 +16,17 @@ var collider = {
 
     angle = Math.acos(angle) * (180/Math.PI);
 
-    if ((angle<177 || angle>183) && f<4) {
-      this.bounce(e1, e2);
+    if ((angle<self.minBounceAngle || angle>self.maxBounceAngle) && f<4) {
+      self.bounce(e1, e2);
     }
     else {
-      if (f<1000)
-        this.merge(e1, e2);
+      if (e1.m === e2.m)
+        self.merge(e1, e2);
       else {
-        if (e1.children)
-          this.splitChildren(e1);
-        if (e2.children)
-          this.splitChildren(e2);
+        if (e1.children.length)
+          self.splitChildren(e1);
+        if (e2.children.length)
+          self.splitChildren(e2);
       }
     }
   },
@@ -75,33 +77,49 @@ var collider = {
   },
 
   splitChildren: function(e) {
+    console.log('split');
     var detlaVX = e.vX/e.children.length;
     var detlaVY = e.vY/e.children.length;
     var detlaVZ = e.vZ/e.children.length;
+    var deltaM  = e.m /e.children.length;
+    var deltaS  = e.size/e.children.length;
+
+    // update children
     for (var i=0; i<e.children.length;i++) {
-      e.children[i].m = e.m = e.m/e.children.length;
-      e.children[i].s = e.s = e.m;
+      // Masses en Sizes
+      e.children[i].m = deltaM;
+      e.children[i].size = deltaS;
 
       e.children[i].x = e.x;
       e.children[i].y = e.y;
       e.children[i].z = e.z;
 
-      e.vX -= detlaVX;
-      e.vY -= detlaVY;
-      e.vZ -= detlaVZ;
-
+      // Velocities
       e.children[i].vX = detlaVX;
       e.children[i].vY = detlaVY;
       e.children[i].vZ = detlaVZ;
 
-      e.x += e.vX;
-      e.y += e.vY;
-      e.z += e.vZ;
-
+      // Positions
       e.children[i].x += e.children[i].vX;
       e.children[i].y += e.children[i].vY;
       e.children[i].z += e.children[i].vZ;
+
+      if (e.children[i].children.length) {
+        collider.splitChildren(e.children[i]);
+      }
     }
+
+    // Update parent elements
+    e.m = deltaM;
+    e.size = deltaS;
+
+    e.vX = detlaVX;
+    e.vY = detlaVY;
+    e.vZ = detlaVZ;
+
+    e.x += e.vX;
+    e.y += e.vY;
+    e.z += e.vZ;
     e.children = [];
   }
 };

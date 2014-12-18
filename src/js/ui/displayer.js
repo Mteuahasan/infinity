@@ -11,19 +11,19 @@ var displayer = {
   windowHalfX: window.innerWidth/2,
   windowHalfY: window.innerHeight/2,
 
-  container: null,
+  container: document.querySelector('#viewport'),
 
+  scene      : new THREE.Scene(),
+  renderer   : new THREE.WebGLRenderer({clearAlpha: 1}),
+  helper     : new THREE.AxisHelper(1000),
+  helperBis  : new THREE.AxisHelper(-1000),
   model      : null,
   camera     : null,
-  scene      : null,
-  renderer   : null,
   attributes : null,
-  helper     : null,
-  helperBis  : null,
-  showHelpers: false,
+  showHelpers: true,
 
-  particle      : null,
-  particles     : null,
+  particle      : new THREE.Vector3(0, 0, 0),
+  particles     : new THREE.Geometry(),
   pMaterial     : null,
   particleSystem: null,
 
@@ -33,8 +33,6 @@ var displayer = {
 
   init: function(elements) {
     var self = this;
-
-    self.container = document.querySelector('#viewport');
 
     // Set up fps meter
     self.meter = new FPSMeter({
@@ -47,7 +45,6 @@ var displayer = {
     /**
       * RENDER
     */
-    self.renderer = new THREE.WebGLRenderer({clearAlpha: 1});
     self.renderer.setSize(self.container.offsetWidth, self.container.offsetHeight);
     self.container.appendChild(self.renderer.domElement);
 
@@ -57,27 +54,19 @@ var displayer = {
     self.camera.position.z = 1000;
     self.camera.position.y = 1000;
 
-
-    //Setting up the scene
-    self.scene = new THREE.Scene();
-
-    self.setupLights();
-    self.helper    = new THREE.AxisHelper(1000);
-    self.helperBis = new THREE.AxisHelper(-1000);
     self.showHideHelpers();
 
 
-    //Setting up orbit control
+    // Setting up orbit control
     self.controls = new THREE.OrbitControls(self.camera, self.container, self.container);
     self.controls.addEventListener('change', self.render);
-
 
     // On Resize using the js/libs/resize.js
     addResizeListener(self.container, self.onWindowResize);
 
+
     //Draw canvas
     self.createCanvasTexture();
-
     //Create texture
     self.texture = new THREE.Texture(self.canvas);
 
@@ -101,7 +90,6 @@ var displayer = {
       self.attributes.size.value.push(1);
     }
 
-    self.particles = new THREE.Geometry();
     self.pMaterial = new THREE.ShaderMaterial({
       uniforms      : uniforms,
       attributes    : self.attributes,
@@ -113,7 +101,6 @@ var displayer = {
       fragmentShader: document.getElementById('fragShader').textContent
     });
 
-    self.particle = new THREE.Vector3(0, 0, 0);
 
     self.createSpheresSync(0, elements, function() {
       var ticker = require('../logic/ticker.js');
@@ -124,8 +111,6 @@ var displayer = {
     /**
       * RAF main anim loop
     */
-
-
     (function animLoop() {
       self.render();
       self.animate();
@@ -149,13 +134,6 @@ var displayer = {
     }
   },
 
-  setupLights: function() {
-    var self = this;
-
-    // Ambient Light
-    var ambientLight = new THREE.AmbientLight({color : 0xffffff});
-    self.scene.add(ambientLight);
-  },
 
   // Create sphere in a for loop, faster and but freezes the browser
   createSpheresSync: function(n, elements ,cb) {
@@ -220,7 +198,7 @@ var displayer = {
     self.canvas  = document.createElement('canvas');
     self.context = self.canvas.getContext('2d');
 
-    self.canvas.width  = 500;
+    self.canvas.width  = 1000;
     self.canvas.height = self.canvas.width;
 
     var center = Math.round(self.canvas.width) * 0.5;
