@@ -9,20 +9,57 @@
 <body>
 
   <div id="popup-box" class="">
-    <span class="popup-titre"><span>Information :</span>Initialisation du nombre de particules <span class="lodash">_</span></span>
-    <div class="seperate w200">
-      <span class="line"></span>
+    <div class="etape1 etape">
+      <span class="popup-titre"><span>Information :</span>Initialisation du nombre de particules <span class="lodash">_</span></span>
+      <div class="seperate w200">
+        <span class="line"></span>
+      </div>
+      <span class="etape1-descript">
+        Modifier la probalitité entre la fusion et la répulsion entre les particules pour avoir soit un univers avec de nouveau éléments ou un univers mouvant.
+      </span>
+      <span class="etape1-nbParticules">
+        200 PARTICULES
+      </span>
+      <form id="etape1-form">
+        <input type="range" class="etape1-field" pitch="1" max="2000" min="1" value="1000">
+        <input type="submit" class="etape1-submit" value="VALIDER">
+      </form>
     </div>
-    <span class="etape1-descript">
-      Modifier la probalitité entre la fusion et la répulsion entre les particules pour avoir soit un univers avec de nouveau éléments ou un univers mouvant.
-    </span>
-    <span class="etape1-nbParticules">
-      200 PARTICULES
-    </span>
-    <form id="etape1-form">
-      <input type="range" class="etape1-field" pitch="1" max="2000" min="1" value="1000">
-      <input type="submit" class="etape1-submit" value="VALIDER">
-    </form>
+    
+    <div class="etape2 etape">
+      <span class="popup-titre"><span>Information :</span>ETAPE 2 <span class="lodash">_</span></span>
+      <div class="seperate w200">
+        <span class="line"></span>
+      </div>
+      <span class="etape1-descript">
+        Modifier la probalitité entre la fusion et la répulsion entre les particules pour avoir soit un univers avec de nouveau éléments ou un univers mouvant.
+      </span>
+      <span class="etape1-nbParticules">
+        200 PARTICULES
+      </span>
+      <form id="etape2-form">
+        <input type="range" class="etape2-field" pitch="1" max="2000" min="1" value="1000">
+        <input type="submit" class="etape2-submit" value="VALIDER">
+      </form>
+    </div>
+    
+    
+    <div class="etape3 etape">
+      <span class="popup-titre"><span>Information :</span>ETAPE 3 <span class="lodash">_</span></span>
+      <div class="seperate w200">
+        <span class="line"></span>
+      </div>
+      <span class="etape1-descript">
+        Modifier la probalitité entre la fusion et la répulsion entre les particules pour avoir soit un univers avec de nouveau éléments ou un univers mouvant.
+      </span>
+      <span class="etape1-nbParticules">
+        200 PARTICULES
+      </span>
+      <form id="etape3-form">
+        <input type="range" class="etape3-field" pitch="1" max="2000" min="1" value="1000">
+        <input type="submit" class="etape3-submit" value="VALIDER">
+      </form>
+    </div>
   </div>
 
     <div id="loader">
@@ -107,7 +144,7 @@
                 <span class="line"></span>
                 <span class="line"></span>
               </div>
-            <div class="button"><a href="">[ REDEMARRAGE SYST. ]</a></div>
+            <div id="button-syst" class="button"><a href=""><span class="lodash">[ REDEMARRAGE SYST. ]</span></a></div>
           </div>
       </div>
   <div id="viewport"></div>
