@@ -1,8 +1,9 @@
 var gulp       = require('gulp');
 var browserify = require('gulp-browserify');
-var workerify  = require ('workerify');
+var uglify     = require('gulp-uglify');
 var livereload = require('gulp-livereload');
 var sass       = require('gulp-sass');
+var minifyCSS  = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 
@@ -38,8 +39,33 @@ gulp.task('js', function() {
     .pipe(livereload());
 });
 
+/** PROD */
+
+// SCSS Files
+gulp.task('sass-prod', function () {
+  gulp.src('./src/sass/main.scss')
+    .pipe(sass())
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    .pipe(minifyCSS({keepBreaks:true}))
+    .pipe(gulp.dest('./build/css'))
+});
+
+// JS Files - Development
+gulp.task('js-prod', function() {
+  gulp.src('src/js/app.js')
+    .pipe(browserify({
+      insertGlobals : true,
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest('./build/js'))
+});
+
 
 /**
   * DEFAULT TASK
 */
 gulp.task('default', ['js', 'sass', 'watch']);
+gulp.task('prod', ['js-prod', 'sass-prod']);
