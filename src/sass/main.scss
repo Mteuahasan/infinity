@@ -369,6 +369,10 @@ body {
     top:0;
   }
 }
+.step-final {
+  text-align: center;
+  display: block;
+}
 
 .infos{
   position: absolute;
@@ -432,6 +436,11 @@ body {
     font-weight: 300;
     margin-top: 30px;
   }
+}
+#final-close {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 
@@ -578,4 +587,22 @@ input[type='range']::-moz-range-thumb {
   animation-name: clignote; //on affecte l'animation clignote à notre bouton
   animation-duration: 1.5s; //on définit la durée de l'animation à 1s
   animation-iteration-count:infinite;
+}
+
+#social-bar {
+  width:230px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.twitter-share-button {
+  display: inline-block;
+  position:relative;
+  top:4px;
+  left:20px;
+  
+}
+.facebook-share-button {
+  display: inline-block;
+
 }

@@ -17,8 +17,6 @@ var universe = {
     N         = N || 2000;
     minSpeed  = minSpeed || .5;
     randSpeed = randSpeed || .5;
-    console.log(minSpeed);
-    console.log(randSpeed);
 
     var elementTemplate = {
       type: "elementary",
