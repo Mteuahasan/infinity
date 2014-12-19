@@ -7,14 +7,13 @@ var informations = {
   endDate : '',
 
   $averageSpeed: $.byId('average-speed'),
-  $infosMass   : $.sel('.infos_masse'),
+  $infosMass   : $.sel('.infos_mass'),
   $infosFusion : $.sel('.infos_fusion'),
 
   init: function() {
     this.displayTime();
     this.setEvents();
     this.particle();
-    //this.hideLoader();
   },
 
   hideLoader : function(){
@@ -38,9 +37,9 @@ var informations = {
       }
     });
     $.sel('.btn-start').addEventListener('click', this.hideLoader, false);
-    $.sel('.masse').addEventListener('click', this.showHideMasseInfo, false);
+    $.sel('.mass').addEventListener('click', this.showHideMassInfo, false);
     $.sel('.fusion').addEventListener('click', this.showHideFusionInfo, false);
-    $.sel('.infos_masse .close').addEventListener('click', this.showHideMasseInfo, false);
+    $.sel('.infos_mass .close').addEventListener('click', this.showHideMassInfo, false);
     $.sel('.infos_fusion .close').addEventListener('click', this.showHideFusionInfo, false);
   },
 
@@ -55,7 +54,7 @@ var informations = {
     },1000);
   },
 
-  showHideMasseInfo : function() {
+  showHideMassInfo : function() {
     if(informations.$infosMass.classList.contains('hide')) {
         informations.$infosMass.classList.remove("hide");
         informations.$infosFusion.classList.add("hide");
@@ -111,7 +110,7 @@ var informations = {
     particlesJS('particles-js', {
       particles: {
         color: '#fff',
-        shape: 'circle', // "circle", "edge" or "triangle"
+        shape: 'circle',
         opacity: 0.5,
         size: 2,
         size_random: true,
@@ -138,7 +137,7 @@ var informations = {
         mouse: {
           distance: 250
         },
-        detect_on: 'canvas', // "canvas" or "window"
+        detect_on: 'canvas',
         mode: 'grab',
         line_linked: {
           opacity: .5
@@ -146,12 +145,11 @@ var informations = {
         events: {
           onclick: {
             enable: false,
-            mode: 'push', // "push" or "remove" (particles)
+            mode: 'push',
             nb: 4
           }
         }
       },
-      /* Retina Display Support */
       retina_detect: true
     });
   }

@@ -102,7 +102,7 @@ var displayer = {
     });
 
 
-    self.createSpheresSync(0, elements, function() {
+    self.createSpheresSync(elements, function() {
       var ticker = require('../logic/ticker.js');
       ticker.init();
     });
@@ -117,6 +117,18 @@ var displayer = {
       self.meter.tick();
       requestAnimFrame(animLoop);
     })();
+  },
+
+  reset: function(elements) {
+    console.log("reset");
+    this.particleSystem =  null;
+    this.particles      =  new THREE.Geometry();
+    this.scene          =  new THREE.Scene(),
+    this.createSpheresSync(elements, function() {
+      var ticker = require('../logic/ticker.js');
+      ticker.run = true;
+      ticker.tick();
+    });
   },
 
   showHideHelpers: function() {
@@ -136,7 +148,7 @@ var displayer = {
 
 
   // Create sphere in a for loop, faster and but freezes the browser
-  createSpheresSync: function(n, elements ,cb) {
+  createSpheresSync: function(elements ,cb) {
     var self = this;
     var particle = null;
     for (var i=0;i<elements.length;i++) {

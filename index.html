@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="build/css/main.css">
 </head>
 <body>
-  
+
   <div id="popup-box" class="">
     <div class="step1 step">
       <span class="popup-titre"><span>Information :</span>Initialisation du nombre de particules <span class="lodash">_</span></span>
@@ -17,11 +17,11 @@
       <span class="description">
         Augmenter le nombre de particules pour générer un univers plus vaste.
       </span>
-      <span class="nombre">
-        <span id="popup-particules">1000</span> PARTICULES
-      </span>
       <form id="step1-form" class="form">
-        <input type="range" id="popup-particules-range" class="field" pitch="1" max="2000" min="1" value="1000">
+        <span class="number">
+          <span id="popup-particules">1000</span> PARTICULES
+        </span>
+        <input type="range" id="popup-particules-range" class="field" pitch="1" max="2000" min="2" value="1000">
         <input type="submit" class="submit" value="VALIDER">
       </form>
     </div>
@@ -32,31 +32,35 @@
         <span class="line"></span>
       </div>
       <span class="description">
-        En augmentant la masse vous allez augmenter la vitesse des particules.
-      </span>
-      <span class="nombre">
-        MASSE : <span id="popup-masse">1</span>
+        En augmentant la masse vous augmentez l'attraction entre les particules.
       </span>
       <form id="step2-form" class="form">
-        <input type="range" id="popup-masse-range" class="field" step="0.5" max="10" min="1" value="1">
+        <span class="number">
+          MASSE : <span id="popup-mass">1</span>
+        </span>
+        <input type="range" id="popup-mass-range" class="field" step="0.5" max="10" min="1" value="1">
         <input type="submit" class="submit" value="VALIDER">
       </form>
     </div>
 
 
-    <div class="step3 step">
-      <span class="popup-titre"><span>Information :</span>Fusion des particules<span class="lodash">_</span></span>
+    <div class="step3 step light">
+      <span class="popup-titre"><span>Information :</span>Puissance de l'explosion<span class="lodash">_</span></span>
       <div class="seperate w200">
         <span class="line"></span>
       </div>
       <span class="description">
-        Les intéractions sont de différents types, elles sont toujours le résultat de collisions entre les corps.
-      </span>
-      <span class="nombre">
-        PROBABILITÉ : <span id="popup-fusion">30</span>%
+        La puissance de l'explosion de départ va définir la vitesse à laquelle chaque particule sera expulsé au début de l'expérience.
       </span>
       <form id="step3-form" class="form">
-        <input type="range" id="popup-fusion-range" class="field" step="1" max="100" min="1" value="30">
+        <span class="number">
+          PUISSANCE MINIMUM : <span id="explosion-min">1</span>
+        </span>
+        <input type="range" id="explosion-min-range" class="field" step="0.5" max="10" min="0" value="1">
+        <span class="number">
+          VARIATION : <span id="explosion-max">1</span>
+        </span>
+        <input type="range" id="explosion-max-range" class="field" step="0.5" max="10" min="0" value="1">
         <input type="submit" class="submit" value="VALIDER">
       </form>
     </div>
@@ -75,8 +79,8 @@
       </form>
     </div>
   </div>
-  
-  <div class="infos_masse infos hide">
+
+  <div class="infos_mass infos hide">
     <span class="close">&times;</span>
     <span class="titre"><span>Information :</span>La masse d'une particule<span class="lodash">_</span></span>
     <div class="seperate w200">
@@ -98,11 +102,11 @@
       <span class="line"></span>
     </div>
     <span class="description">
-      Les intéractions entre les particules sont de trois types ici. Elles sont toujours le résultat de collisions entre les corps.<br><br>
+      Les interactions entre les particules sont de trois types ici. Elles sont toujours le résultat de collisions entre les corps.<br><br>
       Fusion : deux corps étant en contact et ayant la même masse ont une chance de fusionner pour former un seul élément de taille plus importante et de masse égale à la somme des masses des deux élements fusionnés.<br><br>
       Séparation : deux corps de masse différente entrant en contact vont avoir pour effet de séparer l'élément le moins massif en plusieurs corps de masse et de taille inférieure.<br><br>
       Rebond : deux corps, quelque soient leur masse vont rebondir si l'angle de collision n'est pas plat ou presque, empechant alors la fusion et la séparation.<br><br>
-      Ces différentes intéractions paramètrales vont alors avoir un impact sur le déroulement de la simulation.
+      Ces différentes interactions paramètrales vont alors avoir un impact sur le déroulement de la simulation.
     </span>
   </div>
 
@@ -110,7 +114,7 @@
       <div id="particles-js"></div>
       <div id="loader-content">
         <img class="logo" src="img/logo.png"/>
-        <span class="name">LIFE <span>SYSTEM</span> 2.0</span>
+        <span class="name">INFINITY</span>
         <div class="seperate sepLoad">
             <span class="line"></span>
         </div>
@@ -138,7 +142,7 @@
                 <span id="current_time" class="time">00:00:00</span>
                 <span id="time" class="time">00:00:00</span>
             </div>
-            <div id="name"><span>NOM:</span> LIFE <span>SYSTEM</span> 2.0</div>
+            <div id="name"><span>NOM:</span>INFINITY 2.0</div>
             <div class="seperate">
                 <span class="line"></span>
                 <span class="line"></span>
@@ -179,7 +183,7 @@
             </div>
           </div>
           <div id="box3">
-            <a class="link masse"><span class="crochet">[</span> Informations sur la masse <span class="crochet">]</span></a>
+            <a class="link mass"><span class="crochet">[</span> Informations sur la masse <span class="crochet">]</span></a>
             <a class="link fusion"><span class="crochet">[</span> Informations sur la fusion <span class="crochet">]</span></a>
           </div>
           <div id="box4">

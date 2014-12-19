@@ -40,21 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  var elements = [{
-    type: "elementary",
-    size: 2,
-    m: 1,
-    x: 0,
-    y: 0,
-    z: 0,
-    vX: 0,
-    vY: 0,
-    vZ: 0,
-    speed: 0,
-    children: []
-  }];
-
-  universe.init(elements);
+  universe.init();
   informations.init();
   interactions.init();
 });

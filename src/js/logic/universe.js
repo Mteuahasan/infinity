@@ -5,19 +5,41 @@ var _ = require('lodash');
 var displayer = require('../ui/displayer');
 
 // Number of elements
-var N = 2000;
 
 var universe = {
   elements: [],
 
-  init: function(elements) {
+  init: function(N, m, minSpeed, randSpeed, reset) {
     var self = this;
+
+    self.elements = [];
+    // options - default || setted
+    N         = N || 2000;
+    minSpeed  = minSpeed || .5;
+    randSpeed = randSpeed || .5;
+    console.log(minSpeed);
+    console.log(randSpeed);
+
+    var elementTemplate = {
+      type: "elementary",
+      size: 2,
+      m: m || 1,
+      x: 0,
+      y: 0,
+      z: 0,
+      vX: 0,
+      vY: 0,
+      vZ: 0,
+      speed: 0,
+      children: []
+    };
+
     var speed = 0;
     var r1 = 0, r2 = 0, r3 = 0, sum = 0, tempSpeed = 0, ratio = 0, clone = null;
     for (var i=0;i<N;i++) {
-      clone = _.cloneDeep(elements[0]);
+      clone = _.cloneDeep(elementTemplate);
 
-      speed = Math.random()*3+.5;
+      speed = Math.random()*randSpeed+minSpeed;
 
 
       // randomize speed on each axis
@@ -42,7 +64,10 @@ var universe = {
       self.elements.push(clone);
     }
 
-    displayer.init(self.elements);
+    if (reset === true)
+      displayer.reset(self.elements);
+    else
+      displayer.init(self.elements);
   }
 };
 
